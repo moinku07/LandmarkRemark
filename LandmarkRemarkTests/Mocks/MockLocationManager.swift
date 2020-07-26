@@ -27,6 +27,7 @@ class MockLocationManager: LocationManager{
     }
     
     static let notAuthorisedError = NSError(domain: kCLErrorDomain, code: Int(CLAuthorizationStatus.denied.rawValue), userInfo: nil)
+    static let noLocationError = NSError(domain: kCLErrorDomain, code: 0, userInfo: nil)
     
     func requestAuthorisation() {
         

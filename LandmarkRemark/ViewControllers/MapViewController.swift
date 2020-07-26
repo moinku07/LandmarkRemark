@@ -20,6 +20,8 @@ class MapViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     
+    var userVM: UserViewModel?
+    
     deinit {
         print("=====================")
         print("\(String(describing: type(of: self))) is being deinitialised. That means no memory leak in this vc")
@@ -33,6 +35,14 @@ class MapViewController: UIViewController {
         
         let locationManager = LRLocationManager()
         self.locationVM = LocationViewModel(locationManager: locationManager)
+        
+        userVM = UserViewModel(service: UserService())
+        userVM?.firstName = "John"
+        userVM?.lastName = "Smith"
+        userVM?.userName = "johnsmith"
+        
+        userVM?.createUser()
+        
         /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             let vc = UIViewController()

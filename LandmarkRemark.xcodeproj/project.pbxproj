@@ -21,7 +21,7 @@
 		33A2F50924CA67A6008209F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33A2F50724CA67A6008209F2 /* Main.storyboard */; };
 		33A2F50B24CA67A8008209F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33A2F50A24CA67A8008209F2 /* Assets.xcassets */; };
 		33A2F50E24CA67A8008209F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33A2F50C24CA67A8008209F2 /* LaunchScreen.storyboard */; };
-		33A2F51924CA67A8008209F2 /* LandmarkRemarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F51824CA67A8008209F2 /* LandmarkRemarkTests.swift */; };
+		33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */; };
 		33A2F52424CA67A8008209F2 /* LandmarkRemarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F52324CA67A8008209F2 /* LandmarkRemarkUITests.swift */; };
 		33A2F53824CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F53724CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift */; };
 		33E87C3424CAB1A000EC4A85 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E87C3324CAB1A000EC4A85 /* MapKit.framework */; };
@@ -30,6 +30,17 @@
 		B9E686C741308417F5327EE1 /* Pods_LandmarkRemarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A88348C808C1F432C43C0E /* Pods_LandmarkRemarkTests.framework */; };
 		CD2E8F6D24CD0385003D4FED /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F6C24CD0385003D4FED /* Helpers */; };
 		CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */; };
+		CD2E8F7624CD5896003D4FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */; };
+		CD2E8F7724CD5896003D4FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */; };
+		CD2E8F7824CD5896003D4FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */; };
+		CD2E8F7924CD5896003D4FED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */; };
+		CD2E8F7C24CD63E9003D4FED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F7B24CD63E9003D4FED /* User.swift */; };
+		CD2E8F8124CD67CE003D4FED /* UserCreationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8024CD67CE003D4FED /* UserCreationTest.swift */; };
+		CD2E8F8324CD68B8003D4FED /* LocationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8224CD68B8003D4FED /* LocationManagerTests.swift */; };
+		CD2E8F8524CD6E29003D4FED /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8424CD6E29003D4FED /* UserViewModel.swift */; };
+		CD2E8F8724CD6EE9003D4FED /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8624CD6EE9003D4FED /* UserService.swift */; };
+		CD2E8F8A24CD7495003D4FED /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8924CD7495003D4FED /* MockUserService.swift */; };
+		CD2E8F8D24CD74E3003D4FED /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */; };
 		E37896AC921C24ECE0FAAD63 /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A727A2F8102B12A2B3FD1A /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +88,7 @@
 		33A2F50D24CA67A8008209F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33A2F50F24CA67A8008209F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33A2F51424CA67A8008209F2 /* LandmarkRemarkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkRemarkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		33A2F51824CA67A8008209F2 /* LandmarkRemarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkTests.swift; sourceTree = "<group>"; };
+		33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkTestsSetup.swift; sourceTree = "<group>"; };
 		33A2F51A24CA67A8008209F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33A2F51F24CA67A8008209F2 /* LandmarkRemarkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkRemarkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33A2F52324CA67A8008209F2 /* LandmarkRemarkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkUITests.swift; sourceTree = "<group>"; };
@@ -98,6 +109,14 @@
 		C5A727A2F8102B12A2B3FD1A /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2E8F6C24CD0385003D4FED /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Helpers; sourceTree = "<group>"; };
 		CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRPinAnnotation.swift; sourceTree = "<group>"; };
+		CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CD2E8F7B24CD63E9003D4FED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CD2E8F8024CD67CE003D4FED /* UserCreationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCreationTest.swift; sourceTree = "<group>"; };
+		CD2E8F8224CD68B8003D4FED /* LocationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTests.swift; sourceTree = "<group>"; };
+		CD2E8F8424CD6E29003D4FED /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CD2E8F8624CD6EE9003D4FED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		CD2E8F8924CD7495003D4FED /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
+		CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		F3A88348C808C1F432C43C0E /* Pods_LandmarkRemarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -169,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				330F006924CA76B6005176AE /* LocationViewModel.swift */,
+				CD2E8F8424CD6E29003D4FED /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -176,7 +196,6 @@
 		330F006E24CA775B005176AE /* LocationManager */ = {
 			isa = PBXGroup;
 			children = (
-				330F006F24CA7772005176AE /* LocationManager.swift */,
 				330F007424CA7A9F005176AE /* LRLocationManager.swift */,
 			);
 			path = LocationManager;
@@ -186,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				330F007124CA7917005176AE /* MockLocationManager.swift */,
+				CD2E8F8924CD7495003D4FED /* MockUserService.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -226,14 +246,18 @@
 			isa = PBXGroup;
 			children = (
 				33A2F50324CA67A6008209F2 /* AppDelegate.swift */,
-				CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */,
+				CD2E8F8B24CD74AF003D4FED /* Protocols */,
 				330F006E24CA775B005176AE /* LocationManager */,
+				CD2E8F8824CD6EF5003D4FED /* Services */,
+				CD2E8F7D24CD63F0003D4FED /* Models */,
+				CD2E8F7A24CD601D003D4FED /* Views */,
 				330F006B24CA76BB005176AE /* ViewModels */,
 				330F007B24CA8B27005176AE /* ViewControllers */,
 				33A2F50724CA67A6008209F2 /* Main.storyboard */,
 				33A2F50A24CA67A8008209F2 /* Assets.xcassets */,
 				33A2F50C24CA67A8008209F2 /* LaunchScreen.storyboard */,
 				33A2F50F24CA67A8008209F2 /* Info.plist */,
+				CD2E8F7524CD5896003D4FED /* GoogleService-Info.plist */,
 				CD2E8F6C24CD0385003D4FED /* Helpers */,
 			);
 			path = LandmarkRemark;
@@ -243,7 +267,9 @@
 			isa = PBXGroup;
 			children = (
 				330F007324CA791E005176AE /* Mocks */,
-				33A2F51824CA67A8008209F2 /* LandmarkRemarkTests.swift */,
+				33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */,
+				CD2E8F8224CD68B8003D4FED /* LocationManagerTests.swift */,
+				CD2E8F8024CD67CE003D4FED /* UserCreationTest.swift */,
 				33A2F51A24CA67A8008209F2 /* Info.plist */,
 			);
 			path = LandmarkRemarkTests;
@@ -273,6 +299,39 @@
 			path = LandmarkRemarkAcceptanceTests;
 			sourceTree = "<group>";
 		};
+		CD2E8F7A24CD601D003D4FED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CD2E8F7D24CD63F0003D4FED /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CD2E8F7B24CD63E9003D4FED /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CD2E8F8824CD6EF5003D4FED /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CD2E8F8624CD6EE9003D4FED /* UserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CD2E8F8B24CD74AF003D4FED /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				330F006F24CA7772005176AE /* LocationManager.swift */,
+				CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,6 +343,7 @@
 				33A2F4FC24CA67A6008209F2 /* Sources */,
 				33A2F4FD24CA67A6008209F2 /* Frameworks */,
 				33A2F4FE24CA67A6008209F2 /* Resources */,
+				D8A98C0FA9CE8944A654D148 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -321,6 +381,7 @@
 				33A2F51B24CA67A8008209F2 /* Sources */,
 				33A2F51C24CA67A8008209F2 /* Frameworks */,
 				33A2F51D24CA67A8008209F2 /* Resources */,
+				6522EF8F12E86A8983759E42 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -408,6 +469,7 @@
 			files = (
 				33A2F50E24CA67A8008209F2 /* LaunchScreen.storyboard in Resources */,
 				33A2F50B24CA67A8008209F2 /* Assets.xcassets in Resources */,
+				CD2E8F7624CD5896003D4FED /* GoogleService-Info.plist in Resources */,
 				CD2E8F6D24CD0385003D4FED /* Helpers in Resources */,
 				33A2F50924CA67A6008209F2 /* Main.storyboard in Resources */,
 			);
@@ -417,6 +479,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2E8F7724CD5896003D4FED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +487,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2E8F7824CD5896003D4FED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,12 +496,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				337EB8C124CA6B9000329F91 /* Features in Resources */,
+				CD2E8F7924CD5896003D4FED /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		6522EF8F12E86A8983759E42 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		91CEC8EBA300D403652377AC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,6 +581,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D8A98C0FA9CE8944A654D148 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F4FE0CCF947DEB05CB3D170A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -550,12 +649,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2E8F8D24CD74E3003D4FED /* UserServiceProtocol.swift in Sources */,
 				330F007524CA7A9F005176AE /* LRLocationManager.swift in Sources */,
+				CD2E8F8524CD6E29003D4FED /* UserViewModel.swift in Sources */,
+				CD2E8F8724CD6EE9003D4FED /* UserService.swift in Sources */,
 				33A2F50424CA67A6008209F2 /* AppDelegate.swift in Sources */,
 				330F007024CA7772005176AE /* LocationManager.swift in Sources */,
 				330F007A24CA8B0D005176AE /* MapViewController.swift in Sources */,
 				CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */,
 				330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */,
+				CD2E8F7C24CD63E9003D4FED /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,8 +666,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD2E8F8324CD68B8003D4FED /* LocationManagerTests.swift in Sources */,
 				330F007224CA7917005176AE /* MockLocationManager.swift in Sources */,
-				33A2F51924CA67A8008209F2 /* LandmarkRemarkTests.swift in Sources */,
+				CD2E8F8124CD67CE003D4FED /* UserCreationTest.swift in Sources */,
+				33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */,
+				CD2E8F8A24CD7495003D4FED /* MockUserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,7 +896,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 251A73226D417233ACB65182 /* Pods-LandmarkRemarkTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
@@ -812,7 +918,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 86BA3A451500E5C6E131F789 /* Pods-LandmarkRemarkTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
@@ -834,7 +940,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8E82D575A7653A8DF1415612 /* Pods-LandmarkRemark-LandmarkRemarkUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;
@@ -855,7 +961,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B049E844111D2EE072259CFA /* Pods-LandmarkRemark-LandmarkRemarkUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;

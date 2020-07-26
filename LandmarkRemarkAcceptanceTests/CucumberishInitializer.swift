@@ -15,6 +15,7 @@ class CucumberishInitializer: NSObject{
     @objc public class func setupCucumberish(){
         //Using XCUIApplication only available in XCUI test targets not the normal Unit test targets.
         var app : XCUIApplication!
+        let note = "This is my first note"
         
         beforeStart {
             //Any global initialization can go here
@@ -28,28 +29,32 @@ class CucumberishInitializer: NSObject{
             
             Then("I should see my current location on a map"){ _, _ in
                 let myMarker = app.otherElements.matching(identifier: "MyMarker").firstMatch
-                let myMarkerExists = myMarker.waitForExistence(timeout: 1)
+                let myMarkerExists = myMarker.waitForExistence(timeout: 5)
                 
                 XCTAssertTrue(myMarkerExists)
             }
             
-            Given("Given I tap on my current location marker"){_, _ in
+            Given("I tap on my current location marker"){_, _ in
                 app.launch()
                 
-                app.otherElements.matching(identifier: "MyMarker").firstMatch.tap()
-            }
-            
-            When("When I add note"){args, userInfo in
-                app.alerts.matching(identifier: "AddNote").firstMatch.children(matching: .textField).matching(identifier: "NoteName").firstMatch.typeText("My first note")
-                app.alerts.matching(identifier: "AddNote").firstMatch.children(matching: .textField).matching(identifier: "Save").firstMatch.tap()
-            }
-            
-            Then("Then It should save"){args, userInfo in
-                let okButton = app.alerts.matching(identifier: "NoteSaved").firstMatch.children(matching: .button).matching(identifier: "Save").firstMatch
-                let okButtonExistance = okButton.waitForExistence(timeout: 10)
-                okButton.tap()
+                let myMarker = app.otherElements.matching(identifier: "MyMarker").firstMatch
+                _ = myMarker.waitForExistence(timeout: 5)
                 
-                XCTAssertTrue(okButtonExistance)
+                myMarker.tap()
+            }
+            
+            When("I add note"){args, userInfo in
+                let alert = app.alerts.matching(identifier: "AddNote").firstMatch
+                
+                _ = alert.waitForExistence(timeout: 5)
+                alert.textFields["NoteInputField"].typeText(note)
+                alert.buttons["SaveNote"].tap()
+            }
+            
+            Then("It should save"){args, userInfo in
+                let count = app.otherElements.matching(NSPredicate(format: "label CONTAINS[c] %@", note)).count
+                
+                XCTAssertTrue(count > 0)
             }
         })
         

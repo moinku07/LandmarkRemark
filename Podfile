@@ -6,6 +6,8 @@ target 'LandmarkRemark' do
   use_frameworks!
 
   # Pods for LandmarkRemark
+    pod 'Firebase/Firestore'
+    pod 'FirebaseFirestoreSwift'
 
   target 'LandmarkRemarkAcceptanceTests' do
     # Pods for testing
