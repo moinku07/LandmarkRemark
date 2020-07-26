@@ -35,4 +35,23 @@ class when_I_tap_on_my_current_location_marker: XCTestCase{
         
         XCTAssertTrue(alertExists)
     }
+    
+    func test_app_should_save_text_typed_in_the_alert_textfield(){
+        let app = XCUIApplication()
+        app.launch()
+        
+        app.otherElements.matching(identifier: "MyMarker").firstMatch.tap()
+        
+        let alert = app.alerts.matching(identifier: "AddNote").firstMatch
+        
+        let note = "This is my first note"
+        
+        alert.textFields["NoteInputField"].typeText(note)
+        
+        alert.buttons["SaveNote"].tap()
+        
+        let count = app.otherElements.matching(NSPredicate(format: "label CONTAINS[c] %@", note)).count
+        
+        XCTAssertTrue(count > 0)
+    }
 }

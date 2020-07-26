@@ -29,6 +29,7 @@
 		95A5822A591409C3ACF83EAC /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70407D01B3AD66145C38ACED /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework */; };
 		B9E686C741308417F5327EE1 /* Pods_LandmarkRemarkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A88348C808C1F432C43C0E /* Pods_LandmarkRemarkTests.framework */; };
 		CD2E8F6D24CD0385003D4FED /* Helpers in Resources */ = {isa = PBXBuildFile; fileRef = CD2E8F6C24CD0385003D4FED /* Helpers */; };
+		CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */; };
 		E37896AC921C24ECE0FAAD63 /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A727A2F8102B12A2B3FD1A /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		B79CBCF139453F6B5F73C9C4 /* Pods-LandmarkRemark.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.debug.xcconfig"; sourceTree = "<group>"; };
 		C5A727A2F8102B12A2B3FD1A /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2E8F6C24CD0385003D4FED /* Helpers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Helpers; sourceTree = "<group>"; };
+		CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRPinAnnotation.swift; sourceTree = "<group>"; };
 		F3A88348C808C1F432C43C0E /* Pods_LandmarkRemarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				33A2F50324CA67A6008209F2 /* AppDelegate.swift */,
+				CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */,
 				330F006E24CA775B005176AE /* LocationManager */,
 				330F006B24CA76BB005176AE /* ViewModels */,
 				330F007B24CA8B27005176AE /* ViewControllers */,
@@ -551,6 +554,7 @@
 				33A2F50424CA67A6008209F2 /* AppDelegate.swift in Sources */,
 				330F007024CA7772005176AE /* LocationManager.swift in Sources */,
 				330F007A24CA8B0D005176AE /* MapViewController.swift in Sources */,
+				CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */,
 				330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ class MapViewController: UIViewController {
     
     var locationVM: LocationViewModel!
     
-    var myLocationMarker: MKPointAnnotation?
+    var myLocationMarker: LRPinAnnotation?
     
     var locationManager: CLLocationManager?
     
@@ -103,13 +103,13 @@ extension MapViewController{
     }
     
     func updateUserMarkerLocation(){
-        if self.myLocationMarker == nil{
-            self.myLocationMarker = MKPointAnnotation()
-            self.myLocationMarker?.title = "MyMarker"
-            self.mapView.addAnnotation(self.myLocationMarker!)
-        }
-        
         if let currentLocation = self.locationVM.currentLocation?.coordinate{
+            if self.myLocationMarker == nil{
+                self.myLocationMarker = LRPinAnnotation(title: "MyMarker", coordinate: currentLocation)
+                self.myLocationMarker?.accessibilityIdentifier = "MyMarker"
+                self.mapView.addAnnotation(self.myLocationMarker!)
+            }
+            
             self.myLocationMarker?.coordinate = currentLocation
             
             let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
@@ -120,7 +120,46 @@ extension MapViewController{
 
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view.description)
+        if let marker = view.annotation as? LRPinAnnotation, marker == myLocationMarker, marker.subtitle == nil{
+            let alert = UIAlertController(title: "Add Note", message: nil, preferredStyle: .alert)
+            alert.view.accessibilityIdentifier = "AddNote"
+            alert.addTextField { textField in
+                textField.accessibilityIdentifier = "NoteInputField"
+                textField.placeholder = "Write a note"
+            }
+            let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: {[unowned self] action in
+                if let text = alert.textFields?.first?.text{
+                    DispatchQueue.main.async {
+                        self.mapView.removeAnnotation(self.myLocationMarker!)
+                        self.myLocationMarker?.subtitle = text
+                        self.mapView.addAnnotation(self.myLocationMarker!)
+                        self.mapView.selectAnnotation(self.myLocationMarker!, animated: true)
+                    }
+                }
+            })
+            saveAction.accessibilityLabel = "SaveNote"
+            alert.addAction(saveAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "annotationView")
+        
+        if annotationView == nil{
+            annotationView = MKPinAnnotationView(annotation: nil, reuseIdentifier: "annotationView")
+        }
+        
+        annotationView?.annotation = annotation
+        
+        if let marker = annotation as? LRPinAnnotation, marker == myLocationMarker, marker.subtitle != nil{
+            let label = UILabel()
+            label.text = marker.subtitle
+            annotationView?.detailCalloutAccessoryView = label
+            annotationView?.canShowCallout = true
+        }
+        
+        return annotationView
     }
 }
 

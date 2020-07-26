@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1010030752507-ht7ndv8cbvnpk9qt4dp0hk7lustuusgv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1010030752507-ht7ndv8cbvnpk9qt4dp0hk7lustuusgv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB8m7bthVSz3L27j_nhDad2UKZ3xmztn3o</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1010030752507</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>au.com.stjohnambulance.LandmarkRemark</string>
+	<key>PROJECT_ID</key>
+	<string>landmarkremark-5cb5f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>landmarkremark-5cb5f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1010030752507:ios:93ab11f407ce09fcc0765e</string>
+	<key>DATABASE_URL</key>
+	<string>https://landmarkremark-5cb5f.firebaseio.com</string>
+</dict>
+</plist>
