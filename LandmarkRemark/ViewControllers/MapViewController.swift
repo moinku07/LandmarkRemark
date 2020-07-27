@@ -15,8 +15,6 @@ class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    var myLocationMarker: LRPinAnnotation?
-    
     var locationManager: CLLocationManager?
     
     var locationVM: LocationViewModel!
@@ -66,22 +64,29 @@ class MapViewController: UIViewController {
                         let annotation = MKPointAnnotation()
                         annotation.coordinate = CLLocationCoordinate2D(latitude: $0.geo!.latitude, longitude: $0.geo!.longitude)
                         annotation.subtitle = $0.note
-                        $0.user?.getDocument(completion: { documentSnapshot, error in
-                            annotation.title = try? documentSnapshot?.data(as: User.self)?.userName
-                        })
+                        
+                        Firestore.firestore().collection("users").whereField(FieldPath.documentID(), isEqualTo: $0.user!.documentID).getDocuments { documentSnapshot, error in
+                            annotation.title = try? documentSnapshot?.documents.first?.data(as: User.self)?.userName
+                            
+                            if annotation.title == self.userVM?.userName{
+                                self.mapView.selectAnnotation(annotation, animated: true)
+                            }
+                        }
                         self.annotations.append(annotation)
                         self.mapView.addAnnotation(annotation)
                     }
+                    
+                    self.mapView.showAnnotations(self.mapView.annotations, animated: true)
                 }
             }
         })
         
-        /*
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
             let vc = UIViewController()
             vc.view.backgroundColor = .red
             UIApplication.shared.keyWindow?.rootViewController = vc
-        }*/
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -153,14 +158,7 @@ extension MapViewController{
     
     func updateUserMarkerLocation(){
         if let currentLocation = self.locationVM.currentLocation?.coordinate{
-//            if self.myLocationMarker == nil{
-//                self.myLocationMarker = LRPinAnnotation(title: "MyMarker", coordinate: currentLocation)
-//                self.myLocationMarker?.accessibilityIdentifier = "MyMarker"
-//                self.mapView.addAnnotation(self.myLocationMarker!)
-//            }
-//
-//            self.myLocationMarker?.coordinate = currentLocation
-            
+            // zoom in to user/device location
             let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapView.setRegion(region, animated: true)
         }
@@ -169,7 +167,7 @@ extension MapViewController{
 
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let marker = view.annotation as? LRPinAnnotation, marker == myLocationMarker, marker.subtitle == nil{
+        if view.annotation is MKUserLocation{
             let alert = UIAlertController(title: "Add Note", message: nil, preferredStyle: .alert)
             alert.view.accessibilityIdentifier = "AddNote"
             alert.addTextField { textField in
@@ -190,17 +188,12 @@ extension MapViewController: MKMapViewDelegate{
                                 self.showAlert(title: "Note Saved", message: "Your note was saved", buttons: ["Okay"])
                             }
                         }
-                    }/*
-                    DispatchQueue.main.async {
-                        self.mapView.removeAnnotation(self.myLocationMarker!)
-                        self.myLocationMarker?.subtitle = text
-                        self.mapView.addAnnotation(self.myLocationMarker!)
-                        self.mapView.selectAnnotation(self.myLocationMarker!, animated: true)
-                    }*/
+                    }
                 }
             })
             saveAction.accessibilityLabel = "SaveNote"
             alert.addAction(saveAction)
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -208,6 +201,8 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         if annotation is MKUserLocation{
+            // do not show the callout for current location
+            (annotation as? MKUserLocation)?.title = ""
             return nil
         }
         
@@ -219,19 +214,17 @@ extension MapViewController: MKMapViewDelegate{
         
         annotationView?.annotation = annotation
         
-        if let marker = annotation as? LRPinAnnotation, marker == myLocationMarker, marker.subtitle != nil{
-            let label = UILabel()
-            label.text = marker.subtitle
-            annotationView?.detailCalloutAccessoryView = label
-            annotationView?.canShowCallout = true
-        }else{
-            let label = UILabel()
-            label.text = annotation.subtitle ?? ""
-            annotationView?.detailCalloutAccessoryView = label
-            annotationView?.canShowCallout = true
-            
-            annotationView?.tintColor = .green
+        // give logged in user's pin a different color
+        if annotation.title == self.userVM?.userName{
+            (annotationView as? MKPinAnnotationView)?.pinTintColor = .green
         }
+        
+        let label = UILabel()
+        label.text = annotation.subtitle ?? ""
+        annotationView?.detailCalloutAccessoryView = label
+        annotationView?.canShowCallout = true
+        
+        annotationView?.tintColor = .green
         
         return annotationView
     }

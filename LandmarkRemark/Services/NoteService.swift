@@ -12,6 +12,8 @@ import FirebaseFirestore
 class NoteService: NoteServiceProtocol{
     var db: Firestore!
     
+    private var listener: ListenerRegistration?
+    
     init() {
         let settings = FirestoreSettings()
         Firestore.firestore().settings = settings
@@ -36,7 +38,10 @@ class NoteService: NoteServiceProtocol{
         if let user = user{
             //db.collection("users")
         }
-        noteCollection.getDocuments { querySnapshot, error in
+        
+        listener?.remove()
+        
+        listener = noteCollection.addSnapshotListener { querySnapshot, error in
             if let error = error{
                 completion(nil, error)
             }else if let notes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
