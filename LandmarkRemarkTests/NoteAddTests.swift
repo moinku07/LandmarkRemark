@@ -7,22 +7,29 @@
 //
 
 import XCTest
+import FirebaseFirestore
 @testable import LandmarkRemark
 
 class when_User_submits_note: LandmarkRemarkTests_Setup{
     func test_should_save_note(){
         let mockNoteService = MockNoteService()
-        let noteVM = NoteViewModel(service: mockNoteService, userVM: self.userVM)
+        let noteVM = NoteViewModel(service: mockNoteService)
         
-        noteVM.note = "This is my first note"
-        noteVM.geo = ""
+        noteVM.noteText = "This is my first note"
+        noteVM.geo = GeoPoint(latitude: -31.959299, longitude: 115.858496)
+        //noteVM.userRef = 
         
-        let exp = expectation(for: NSPredicate(block: { obj, _ -> Bool in
+        let exp = XCTestExpectation(description: "Note save")
+        
+        
+        
+        noteVM.saveNote { note, error in
             
-        }), evaluatedWith: noteVM, handler: nil)
+            XCTAssertNotNil(note?.documentID, "Note was not saved")
+            
+            exp.fulfill()
+        }
         
-        noteVM.saveNote(completion: nil)
-        
-        wait(for: [exp], timeout: 5.0)
+        wait(for: [exp], timeout: 10.0)
     }
 }

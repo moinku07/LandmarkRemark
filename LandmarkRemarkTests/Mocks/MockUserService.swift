@@ -7,9 +7,13 @@
 //
 
 import Foundation
+import FirebaseFirestore
 @testable import LandmarkRemark
 
 class MockUserService: UserServiceProtocol{
+    func getRef(forUser user: User) -> DocumentReference {
+        return Firestore.firestore().collection("user").document(user.documentID!)
+    }
     
     func createUser(user: User, completion: @escaping (User?, Error?) -> Void) {
         DispatchQueue.global(qos: .default).async {

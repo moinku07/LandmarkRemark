@@ -10,6 +10,10 @@ import Foundation
 @testable import LandmarkRemark
 
 class MockNoteService: NoteServiceProtocol{
+    func getNotes(for user: User?, completion: @escaping ([Notes]?, Error?) -> Void) {
+        
+    }
+    
     func saveNote(note: Notes, completion: @escaping (Notes?, Error?) -> Void) {
         DispatchQueue.global(qos: .default).async {
             var _note = note
