@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class UserViewModel{
     var firstName: String = ""
@@ -20,16 +21,21 @@ class UserViewModel{
         return User(firstName: self.firstName, lastName: self.lastName, userName: self.userName, documentID: self.documentID)
     }
     
+    var userRef: DocumentReference{
+        return self.service.getRef(forUser: self.user)
+    }
+    
     init(service: UserServiceProtocol) {
         self.service = service
     }
     
-    func createUser(){
+    func createUser(completion: ((User?, Error?)->Void)?){
         self.service.createUser(user: user) { user, error in
             if let error = error{
-                
+                completion?(nil, error)
             }else{
                 self.documentID = user?.documentID
+                completion?(user, nil)
             }
         }
     }

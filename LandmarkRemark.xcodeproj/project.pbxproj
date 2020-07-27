@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330A158724CE5A20006DECE8 /* Notes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A158624CE5A20006DECE8 /* Notes.swift */; };
+		330A158B24CE6211006DECE8 /* NoteAddTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A158A24CE6211006DECE8 /* NoteAddTests.swift */; };
+		330A158D24CE6432006DECE8 /* NoteServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A158C24CE6432006DECE8 /* NoteServiceProtocol.swift */; };
+		330A158F24CE647E006DECE8 /* NoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A158E24CE647E006DECE8 /* NoteService.swift */; };
+		330A159124CE68A8006DECE8 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A159024CE68A8006DECE8 /* NoteViewModel.swift */; };
+		330A159324CE6A43006DECE8 /* MockNoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330A159224CE6A43006DECE8 /* MockNoteService.swift */; };
 		330F006624CA74C4005176AE /* AddNoteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F006524CA74C4005176AE /* AddNoteUITests.swift */; };
 		330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F006924CA76B6005176AE /* LocationViewModel.swift */; };
 		330F007024CA7772005176AE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F006F24CA7772005176AE /* LocationManager.swift */; };
@@ -70,6 +76,12 @@
 
 /* Begin PBXFileReference section */
 		251A73226D417233ACB65182 /* Pods-LandmarkRemarkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemarkTests.debug.xcconfig"; path = "Target Support Files/Pods-LandmarkRemarkTests/Pods-LandmarkRemarkTests.debug.xcconfig"; sourceTree = "<group>"; };
+		330A158624CE5A20006DECE8 /* Notes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notes.swift; sourceTree = "<group>"; };
+		330A158A24CE6211006DECE8 /* NoteAddTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteAddTests.swift; sourceTree = "<group>"; };
+		330A158C24CE6432006DECE8 /* NoteServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteServiceProtocol.swift; sourceTree = "<group>"; };
+		330A158E24CE647E006DECE8 /* NoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteService.swift; sourceTree = "<group>"; };
+		330A159024CE68A8006DECE8 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+		330A159224CE6A43006DECE8 /* MockNoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNoteService.swift; sourceTree = "<group>"; };
 		330F006524CA74C4005176AE /* AddNoteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteUITests.swift; sourceTree = "<group>"; };
 		330F006924CA76B6005176AE /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		330F006F24CA7772005176AE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
@@ -189,6 +201,7 @@
 			children = (
 				330F006924CA76B6005176AE /* LocationViewModel.swift */,
 				CD2E8F8424CD6E29003D4FED /* UserViewModel.swift */,
+				330A159024CE68A8006DECE8 /* NoteViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				330F007124CA7917005176AE /* MockLocationManager.swift */,
+				330A159224CE6A43006DECE8 /* MockNoteService.swift */,
 				CD2E8F8924CD7495003D4FED /* MockUserService.swift */,
 			);
 			path = Mocks;
@@ -270,6 +284,7 @@
 				33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */,
 				CD2E8F8224CD68B8003D4FED /* LocationManagerTests.swift */,
 				CD2E8F8024CD67CE003D4FED /* UserCreationTest.swift */,
+				330A158A24CE6211006DECE8 /* NoteAddTests.swift */,
 				33A2F51A24CA67A8008209F2 /* Info.plist */,
 			);
 			path = LandmarkRemarkTests;
@@ -311,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2E8F7B24CD63E9003D4FED /* User.swift */,
+				330A158624CE5A20006DECE8 /* Notes.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -319,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2E8F8624CD6EE9003D4FED /* UserService.swift */,
+				330A158E24CE647E006DECE8 /* NoteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -327,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				330F006F24CA7772005176AE /* LocationManager.swift */,
+				330A158C24CE6432006DECE8 /* NoteServiceProtocol.swift */,
 				CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */,
 			);
 			path = Protocols;
@@ -649,16 +667,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				330A159124CE68A8006DECE8 /* NoteViewModel.swift in Sources */,
 				CD2E8F8D24CD74E3003D4FED /* UserServiceProtocol.swift in Sources */,
+				330A158D24CE6432006DECE8 /* NoteServiceProtocol.swift in Sources */,
 				330F007524CA7A9F005176AE /* LRLocationManager.swift in Sources */,
 				CD2E8F8524CD6E29003D4FED /* UserViewModel.swift in Sources */,
 				CD2E8F8724CD6EE9003D4FED /* UserService.swift in Sources */,
+				330A158724CE5A20006DECE8 /* Notes.swift in Sources */,
 				33A2F50424CA67A6008209F2 /* AppDelegate.swift in Sources */,
 				330F007024CA7772005176AE /* LocationManager.swift in Sources */,
 				330F007A24CA8B0D005176AE /* MapViewController.swift in Sources */,
 				CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */,
 				330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */,
 				CD2E8F7C24CD63E9003D4FED /* User.swift in Sources */,
+				330A158F24CE647E006DECE8 /* NoteService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,11 +688,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				330A159324CE6A43006DECE8 /* MockNoteService.swift in Sources */,
 				CD2E8F8324CD68B8003D4FED /* LocationManagerTests.swift in Sources */,
 				330F007224CA7917005176AE /* MockLocationManager.swift in Sources */,
 				CD2E8F8124CD67CE003D4FED /* UserCreationTest.swift in Sources */,
 				33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */,
 				CD2E8F8A24CD7495003D4FED /* MockUserService.swift in Sources */,
+				330A158B24CE6211006DECE8 /* NoteAddTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

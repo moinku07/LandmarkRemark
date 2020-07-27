@@ -9,11 +9,8 @@
 import XCTest
 @testable import LandmarkRemark
 
-class when_User_Information_Submitted: XCTestCase{
+class when_User_Information_Submitted: LandmarkRemarkTests_Setup{
     func test_Should_Create_Or_Get_User(){
-        let userService = MockUserService()
-        let userVM = UserViewModel(service: userService)
-        
         userVM.firstName = "John"
         userVM.lastName = "Smith"
         userVM.userName = "johnsmith"
@@ -23,7 +20,7 @@ class when_User_Information_Submitted: XCTestCase{
             return vm.documentID != nil
         }), evaluatedWith: userVM, handler: nil)
         
-        userVM.createUser()
+        userVM.createUser(completion: nil)
         
         wait(for: [exp], timeout: 5.0)
         
