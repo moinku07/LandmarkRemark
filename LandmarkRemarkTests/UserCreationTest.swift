@@ -17,11 +17,11 @@ class when_User_Information_Submitted: LandmarkRemarkTests_Setup{
         
         let exp = XCTestExpectation(description: "User save")
         
-        mockUserService.error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.NoInternet.hashValue, userInfo: nil)
+        mockUserService.error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.NoInternet.rawValue, userInfo: nil)
         
         userVM.createUser { user, error in
             
-            XCTAssertEqual(LRErrorCode.NoInternet.hashValue, (error! as NSError).code)
+            XCTAssertEqual(LRErrorCode.NoInternet.rawValue, (error! as NSError).code)
             
             exp.fulfill()
         }

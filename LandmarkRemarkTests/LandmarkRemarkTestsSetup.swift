@@ -30,13 +30,6 @@ class LandmarkRemarkTests_Setup: XCTestCase{
         mockNoteService = MockNoteService()
         noteVM = NoteViewModel(service: mockNoteService)
     }
-    
-    func createDemoUser(){
-        userVM.firstName = "John"
-        userVM.lastName = "Smith"
-        userVM.userName = "johnsmith"
-        userVM.createUser(completion: nil)
-    }
 }
 
 class LandmarkRemarkTests: LandmarkRemarkTests_Setup {

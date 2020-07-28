@@ -28,7 +28,7 @@ class NoteViewModel{
     
     func saveNote(completion: @escaping (Notes?, Error?)->Void){
         if self.userRef == nil{
-            let error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.ObjectNotFound.hashValue, userInfo: nil)
+            let error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.ObjectNotFound.rawValue, userInfo: nil)
             
             completion(nil, error)
             return

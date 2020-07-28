@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "86CDA6B3-CD91-4C6D-A103-90B8A581D429"
+            uuid = "CB009513-86BE-41A2-A72B-57E662E5BF9E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LandmarkRemarkTests/Mocks/MockNoteService.swift"
+            filePath = "LandmarkRemarkUITests/OpenAppTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "saveNote(note:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "25CEA4D0-FDA2-4FC5-ACF5-08E222B4A3E7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LandmarkRemarkTests/Mocks/MockNoteService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "saveNote(note:completion:)"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "test_then_I_ShouldSeeMyCurrentLocation_OnMap()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

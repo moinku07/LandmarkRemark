@@ -60,7 +60,7 @@ class when_Authorisation_Denied_After_LocationManager_Started: LandmarkRemarkTes
         
         let exp = XCTestExpectation(description: "Location Denied after start")
         
-        self.locationVM.startLocationManager { _, _ in
+        self.locationVM.startLocationManager {[unowned self] _, _ in
             XCTAssertEqual(self.locationVM.state, .notAuthorised)
             
             exp.fulfill()

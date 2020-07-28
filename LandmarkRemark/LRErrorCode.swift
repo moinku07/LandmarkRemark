@@ -6,7 +6,7 @@
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
-enum LRErrorCode{
-    case ObjectNotFound
-    case NoInternet
+enum LRErrorCode: Int{
+    case ObjectNotFound = 0
+    case NoInternet = 1
 }
