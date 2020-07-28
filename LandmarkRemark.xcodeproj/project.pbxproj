@@ -264,8 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				33A2F50324CA67A6008209F2 /* AppDelegate.swift */,
-				33B0A12E24CFB9F200FE0191 /* Reachability.swift */,
-				33B0A13024CFC43000FE0191 /* LRErrorCode.swift */,
+				33B0A13224CFD22800FE0191 /* Supports */,
 				CD2E8F8B24CD74AF003D4FED /* Protocols */,
 				330F006E24CA775B005176AE /* LocationManager */,
 				CD2E8F8824CD6EF5003D4FED /* Services */,
@@ -318,6 +317,15 @@
 				337EB8BB24CA6A0400329F91 /* LandmarkRemarkAcceptanceTests-Bridging-Header.h */,
 			);
 			path = LandmarkRemarkAcceptanceTests;
+			sourceTree = "<group>";
+		};
+		33B0A13224CFD22800FE0191 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				33B0A12E24CFB9F200FE0191 /* Reachability.swift */,
+				33B0A13024CFC43000FE0191 /* LRErrorCode.swift */,
+			);
+			path = Supports;
 			sourceTree = "<group>";
 		};
 		CD2E8F7A24CD601D003D4FED /* Views */ = {
@@ -932,6 +940,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -954,6 +963,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -975,6 +985,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -996,6 +1007,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1017,6 +1029,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkAcceptanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1040,6 +1053,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXBU8TXC63;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkAcceptanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
