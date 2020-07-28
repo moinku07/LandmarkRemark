@@ -45,7 +45,13 @@ class CucumberishInitializer: NSObject{
             
             When("I add note"){args, userInfo in
                 let alert = app.alerts.matching(identifier: "AddNote").firstMatch
-                _ = alert.waitForExistence(timeout: 5.0)
+                let exists = alert.waitForExistence(timeout: 5.0)
+                
+                if !exists{
+                    app.otherElements["UserLocationPin"].firstMatch.tap()
+                    _ = alert.waitForExistence(timeout: 5.0)
+                }
+                
                 alert.textFields["NoteInputField"].typeText(note)
                 alert.buttons["SaveNote"].tap()
                 

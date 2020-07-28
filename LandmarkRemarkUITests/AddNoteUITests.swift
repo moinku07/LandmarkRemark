@@ -17,7 +17,14 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         UserLocationPin.tap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
-        let alertExists = alert.waitForExistence(timeout: 5)
+        var alertExists = alert.waitForExistence(timeout: 5)
+        
+        if !alertExists{
+            // if there is alredy several pins, tap triger wrong pin instead the user location. so try tapping again
+            UserLocationPin.tap()
+            
+            alertExists = alert.waitForExistence(timeout: 5.0)
+        }
         
         XCTAssertTrue(alertExists)
     }
@@ -29,7 +36,14 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         UserLocationPin.tap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
-        _ = alert.waitForExistence(timeout: 5.0)
+        let alertExists = alert.waitForExistence(timeout: 5.0)
+        
+        if !alertExists{
+            // if there is alredy several pins, tap triger wrong pin instead the user location. so try tapping again
+            UserLocationPin.tap()
+            
+            _ = alert.waitForExistence(timeout: 5.0)
+        }
         
         let note = "Test note \(Int.random(in: 1...1000))"
         
