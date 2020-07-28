@@ -50,6 +50,19 @@ class NoteService: NoteServiceProtocol{
         }
     }
     
+    func search(term: String, completion: @escaping ([Notes]?, Error?) -> Void) {
+        db.collection("notes")
+            .whereField("note", isGreaterThanOrEqualTo: term.uppercased())
+            .whereField("note", isLessThanOrEqualTo: term.lowercased())
+            .getDocuments { querySnapshot, error in
+            if let error = error{
+                completion(nil, error)
+            }else if let notes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
+                completion(notes, nil)
+            }
+        }
+    }
+    
     func removeGetNotesSubscription() {
         self.listener?.remove()
         self.listener = nil

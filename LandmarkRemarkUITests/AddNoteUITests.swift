@@ -11,7 +11,10 @@ import XCTest
 
 class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
     func test_then_app_should_show_a_textinput_to_type_a_note(){
-        app.otherElements.matching(identifier: "MyMarker").firstMatch.tap()
+        let myMarker = app.otherElements.matching(identifier: "MyMarker").firstMatch
+        _ = myMarker.waitForExistence(timeout: 5)
+        
+        myMarker.tap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
         let alertExists = alert.waitForExistence(timeout: 5)

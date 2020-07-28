@@ -8,6 +8,7 @@
 
 import Foundation
 @testable import LandmarkRemark
+import FirebaseFirestore
 
 class MockNoteService: NoteServiceProtocol{
     
@@ -25,6 +26,17 @@ class MockNoteService: NoteServiceProtocol{
                 var _note = note
                 _note.documentID = "cX4moZqzBSPrR3lWbhTo"
                 completion(_note, nil)
+            }
+        }
+    }
+    
+    func search(term: String, completion: @escaping ([Notes]?, Error?) -> Void) {
+        DispatchQueue.global(qos: .default).async {
+            if let error = self.error{
+                completion(nil, error)
+            }else{
+                let notes = [Notes(note: "Test", geo: GeoPoint(latitude: -31.959299, longitude: 115.858496), user: Firestore.firestore().collection("user").document("nbb6767s"), documentID: nil)]
+                completion(notes, nil)
             }
         }
     }

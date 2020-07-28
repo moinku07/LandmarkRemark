@@ -15,6 +15,7 @@ import CoreTelephony
 class MapViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var locationManager: CLLocationManager?
     
@@ -34,6 +35,9 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchBar.accessibilityIdentifier = "SearchBar"
+        searchBar.delegate = self
         
         mapView.delegate = self
         mapView.showsUserLocation = true
@@ -76,43 +80,7 @@ class MapViewController: UIViewController {
             self.startLocationUpdates()
         }
         
-        if Reachability.shared.isConnectedToNetwork{
-            noteVM?.getNotes(forUser: nil, completion: {[unowned self] notes, error in
-                DispatchQueue.main.async {
-                    if let error = error{
-                        self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
-                    }else if let notes = notes{
-                        self.mapView.removeAnnotations(self.annotations)
-                        self.annotations.removeAll()
-                        notes.forEach{
-                            let annotation = MKPointAnnotation()
-                            annotation.coordinate = CLLocationCoordinate2D(latitude: $0.geo!.latitude, longitude: $0.geo!.longitude)
-                            annotation.subtitle = $0.note
-                            
-                            Firestore.firestore().collection("users").whereField(FieldPath.documentID(), isEqualTo: $0.user!.documentID).getDocuments { documentSnapshot, error in
-                                if let error = error{
-                                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
-                                }else if let data = documentSnapshot?.documents.first?.data(){
-                                    annotation.title = try? User(dictionary: data).userName
-                                }
-                            }
-                            self.annotations.append(annotation)
-                            self.mapView.addAnnotation(annotation)
-                            
-                            if annotation.subtitle == self.noteText{
-                                self.mapView.selectAnnotation(annotation, animated: true)
-                            }
-                        }
-                        
-                        self.mapView.showAnnotations(self.mapView.annotations, animated: true)
-                    }
-                }
-            })
-        }else{
-            DispatchQueue.main.async {
-                self.showAlert(title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
-            }
-        }
+        loadNotes()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -129,6 +97,52 @@ class MapViewController: UIViewController {
             alert.addAction(UIAlertAction(title: $0, style: UIAlertAction.Style.default, handler: nil))
         }
         self.present(alert, animated: true)
+    }
+}
+
+extension MapViewController{
+    func loadNotes(){
+        if Reachability.shared.isConnectedToNetwork{
+            noteVM?.getNotes(forUser: nil, completion: {[unowned self] notes, error in
+                DispatchQueue.main.async {
+                    if let error = error{
+                        self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                    }else if let notes = notes{
+                        self.setAnnotations(fromNotes: notes)
+                    }
+                }
+            })
+        }else{
+            DispatchQueue.main.async {
+                self.showAlert(title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
+            }
+        }
+    }
+    
+    func setAnnotations(fromNotes notes: [Notes]){
+        self.mapView.removeAnnotations(self.annotations)
+        self.annotations.removeAll()
+        notes.forEach{
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: $0.geo!.latitude, longitude: $0.geo!.longitude)
+            annotation.subtitle = $0.note
+            
+            Firestore.firestore().collection("users").whereField(FieldPath.documentID(), isEqualTo: $0.user!.documentID).getDocuments { documentSnapshot, error in
+                if let error = error{
+                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                }else if let data = documentSnapshot?.documents.first?.data(){
+                    annotation.title = try? User(dictionary: data).userName
+                }
+            }
+            self.annotations.append(annotation)
+            self.mapView.addAnnotation(annotation)
+            
+            if annotation.subtitle == self.noteText{
+                self.mapView.selectAnnotation(annotation, animated: true)
+            }
+        }
+        
+        self.mapView.showAnnotations(self.mapView.annotations, animated: true)
     }
 }
 
@@ -283,3 +297,21 @@ extension MapViewController: CLLocationManagerDelegate{
     }
 }
 
+extension MapViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let term = searchBar.text, term > ""{
+            noteVM?.removeGetNoteSubscription()
+            
+            noteVM?.search(term: searchBar.text!, completion: { notes, error in
+                if let error = error{
+                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                }else if let notes = notes{
+                    self.setAnnotations(fromNotes: notes)
+                }
+            })
+        }else{
+            loadNotes()
+        }
+    }
+}

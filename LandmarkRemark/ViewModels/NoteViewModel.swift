@@ -44,6 +44,12 @@ class NoteViewModel{
         }
     }
     
+    func search(term: String, completion: @escaping ([Notes]?, Error?)->Void){
+        self.service.search(term: term) { notes, error in
+            completion(notes, error)
+        }
+    }
+    
     func removeGetNoteSubscription(){
         self.service.removeGetNotesSubscription()
     }
