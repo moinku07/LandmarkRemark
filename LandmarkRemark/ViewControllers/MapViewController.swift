@@ -22,6 +22,8 @@ class MapViewController: UIViewController {
     var userVM: UserViewModel?
     var noteVM: NoteViewModel?
     
+    var noteText: String?
+    
     var annotations: [MKAnnotation] = [MKAnnotation]()
     
     deinit {
@@ -49,10 +51,9 @@ class MapViewController: UIViewController {
                 print("User get/create error = \(error.localizedDescription)")
                 
                 self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
-                
-            }else if let user = user{
-                // we have got our logged in user
+                return
             }
+            // we have got our logged in user
         })
         
         noteVM = NoteViewModel(service: NoteService())
@@ -93,13 +94,14 @@ class MapViewController: UIViewController {
                                     self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                                 }else if let data = documentSnapshot?.documents.first?.data(){
                                     annotation.title = try? User(dictionary: data).userName
-                                    if annotation.title == self.userVM?.userName{
-                                        self.mapView.selectAnnotation(annotation, animated: true)
-                                    }
                                 }
                             }
                             self.annotations.append(annotation)
                             self.mapView.addAnnotation(annotation)
+                            
+                            if annotation.subtitle == self.noteText{
+                                self.mapView.selectAnnotation(annotation, animated: true)
+                            }
                         }
                         
                         self.mapView.showAnnotations(self.mapView.annotations, animated: true)
@@ -204,12 +206,16 @@ extension MapViewController: MKMapViewDelegate{
                     noteVM.noteText = text
                     noteVM.userRef = userRef
                     noteVM.geo = GeoPoint(latitude: self.locationVM.currentLocation!.coordinate.latitude, longitude: self.locationVM.currentLocation!.coordinate.longitude)
+                    self.noteText = text
                     noteVM.saveNote { note, error in
                         DispatchQueue.main.async {
                             if let error = error{
                                 self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                             }else{
                                 self.showAlert(title: "Note Saved", message: "Your note was saved", buttons: ["Okay"])
+                                DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+                                    self.noteText = nil
+                                }
                             }
                         }
                     }
@@ -249,6 +255,8 @@ extension MapViewController: MKMapViewDelegate{
         annotationView?.canShowCallout = true
         
         annotationView?.tintColor = .green
+        
+        (annotationView as? MKPinAnnotationView)?.accessibilityIdentifier = "Marker_\(self.annotations.firstIndex{$0 === annotation}!)"
         
         return annotationView
     }

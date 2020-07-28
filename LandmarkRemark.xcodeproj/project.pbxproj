@@ -49,6 +49,7 @@
 		CD2E8F8724CD6EE9003D4FED /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8624CD6EE9003D4FED /* UserService.swift */; };
 		CD2E8F8A24CD7495003D4FED /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8924CD7495003D4FED /* MockUserService.swift */; };
 		CD2E8F8D24CD74E3003D4FED /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */; };
+		CDDA8D2F24D02D2600FC3FFA /* NoteSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDDA8D2E24D02D2600FC3FFA /* NoteSearchTests.swift */; };
 		E37896AC921C24ECE0FAAD63 /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A727A2F8102B12A2B3FD1A /* Pods_LandmarkRemark_LandmarkRemarkAcceptanceTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		CD2E8F8624CD6EE9003D4FED /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		CD2E8F8924CD7495003D4FED /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		CD2E8F8C24CD74E3003D4FED /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		CDDA8D2E24D02D2600FC3FFA /* NoteSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSearchTests.swift; sourceTree = "<group>"; };
 		F3A88348C808C1F432C43C0E /* Pods_LandmarkRemarkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemarkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -290,6 +292,7 @@
 				CD2E8F8224CD68B8003D4FED /* LocationManagerTests.swift */,
 				CD2E8F8024CD67CE003D4FED /* UserCreationTest.swift */,
 				330A158A24CE6211006DECE8 /* NoteAddTests.swift */,
+				CDDA8D2E24D02D2600FC3FFA /* NoteSearchTests.swift */,
 				33A2F51A24CA67A8008209F2 /* Info.plist */,
 			);
 			path = LandmarkRemarkTests;
@@ -711,6 +714,7 @@
 				33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */,
 				CD2E8F8A24CD7495003D4FED /* MockUserService.swift in Sources */,
 				330A158B24CE6211006DECE8 /* NoteAddTests.swift in Sources */,
+				CDDA8D2F24D02D2600FC3FFA /* NoteSearchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

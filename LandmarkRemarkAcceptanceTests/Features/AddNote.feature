@@ -23,5 +23,5 @@ Then I should see the location, text, and user-name of notes other users have sa
 
 Scenario: As a user I have the ability to search for a note based on contained text or user-name
 
-Given I launch then app
+Given I launch the app
 Then I should able to search for a note based on contained text or user-name

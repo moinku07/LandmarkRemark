@@ -19,7 +19,9 @@ class when_User_submits_note: LandmarkRemarkTests_Setup{
         
         noteVM.saveNote { note, error in
             
-            XCTAssertEqual(LRErrorCode.ObjectNotFound.rawValue, (error! as NSError).code)
+            if let nsError = error as NSError?{
+                XCTAssert(nsError.domain == String(describing: LRErrorCode.self) && LRErrorCode.ObjectNotFound.rawValue == nsError.code)
+            }
             
             exp.fulfill()
         }
@@ -42,7 +44,10 @@ class when_User_submits_note: LandmarkRemarkTests_Setup{
         userVM.createUser { _, _ in
             self.noteVM.userRef = self.userVM.userRef
             self.noteVM.saveNote { note, error in
-                XCTAssertEqual(LRErrorCode.NoInternet.rawValue, (error! as NSError).code)
+                
+                if let nsError = error as NSError?{
+                    XCTAssert(nsError.domain == String(describing: LRErrorCode.self) && LRErrorCode.NoInternet.rawValue == nsError.code)
+                }
                 
                 exp.fulfill()
             }
