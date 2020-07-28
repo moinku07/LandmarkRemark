@@ -18,8 +18,11 @@ class UserService: UserServiceProtocol{
         db = Firestore.firestore()
     }
     
-    func getRef(forUser user: User)->DocumentReference{
-        return db.collection("user").document(user.documentID!)
+    func getRef(forUser user: User)->DocumentReference?{
+        guard let documentID = user.documentID else{
+            return nil
+        }
+        return db.collection("user").document(documentID)
     }
     
     func createUser(user: User, completion: @escaping (User?, Error?)->Void){

@@ -10,17 +10,27 @@ import Foundation
 @testable import LandmarkRemark
 
 class MockNoteService: NoteServiceProtocol{
+    
+    var error: Error?
+    
     func getNotes(for user: User?, completion: @escaping ([Notes]?, Error?) -> Void) {
         
     }
     
     func saveNote(note: Notes, completion: @escaping (Notes?, Error?) -> Void) {
         DispatchQueue.global(qos: .default).async {
-            var _note = note
-            _note.documentID = "zgFAJ88787Ag"
-            completion(_note, nil)
+            if let error = self.error{
+                completion(nil, error)
+            }else{
+                var _note = note
+                _note.documentID = "cX4moZqzBSPrR3lWbhTo"
+                completion(_note, nil)
+            }
         }
     }
     
+    func removeGetNotesSubscription(){
+        
+    }
     
 }

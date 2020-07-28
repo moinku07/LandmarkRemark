@@ -11,15 +11,24 @@ import FirebaseFirestore
 @testable import LandmarkRemark
 
 class MockUserService: UserServiceProtocol{
-    func getRef(forUser user: User) -> DocumentReference {
-        return Firestore.firestore().collection("user").document(user.documentID!)
+    var error: Error?
+    
+    func getRef(forUser user: User)->DocumentReference? {
+        guard let documentID = user.documentID else{
+            return nil
+        }
+        return Firestore.firestore().collection("user").document(documentID)
     }
     
     func createUser(user: User, completion: @escaping (User?, Error?) -> Void) {
         DispatchQueue.global(qos: .default).async {
-            var _user = user
-            _user.documentID = "zgFAJ88787Ag"
-            completion(_user, nil)
+            if let error = self.error{
+                completion(nil, error)
+            }else{
+                var _user = user
+                _user.documentID = "zgFAJ88787Ag"
+                completion(_user, nil)
+            }
         }
     }
 }

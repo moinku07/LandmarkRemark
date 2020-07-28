@@ -30,6 +30,8 @@
 		33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */; };
 		33A2F52424CA67A8008209F2 /* LandmarkRemarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F52324CA67A8008209F2 /* LandmarkRemarkUITests.swift */; };
 		33A2F53824CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F53724CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift */; };
+		33B0A12F24CFB9F200FE0191 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B0A12E24CFB9F200FE0191 /* Reachability.swift */; };
+		33B0A13124CFC43000FE0191 /* LRErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B0A13024CFC43000FE0191 /* LRErrorCode.swift */; };
 		33E87C3424CAB1A000EC4A85 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E87C3324CAB1A000EC4A85 /* MapKit.framework */; };
 		7CAD6F1B58846911EF383A4B /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3068078A2DCBA77A958BED /* Pods_LandmarkRemark.framework */; };
 		95A5822A591409C3ACF83EAC /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70407D01B3AD66145C38ACED /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework */; };
@@ -108,6 +110,8 @@
 		33A2F53524CA684F008209F2 /* LandmarkRemarkAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkRemarkAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33A2F53724CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkAcceptanceTests.swift; sourceTree = "<group>"; };
 		33A2F53924CA684F008209F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33B0A12E24CFB9F200FE0191 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		33B0A13024CFC43000FE0191 /* LRErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRErrorCode.swift; sourceTree = "<group>"; };
 		33E87C3324CAB1A000EC4A85 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F3068078A2DCBA77A958BED /* Pods_LandmarkRemark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68CA48ED4255D796A001A842 /* Pods-LandmarkRemark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.release.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.release.xcconfig"; sourceTree = "<group>"; };
@@ -260,6 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				33A2F50324CA67A6008209F2 /* AppDelegate.swift */,
+				33B0A12E24CFB9F200FE0191 /* Reachability.swift */,
+				33B0A13024CFC43000FE0191 /* LRErrorCode.swift */,
 				CD2E8F8B24CD74AF003D4FED /* Protocols */,
 				330F006E24CA775B005176AE /* LocationManager */,
 				CD2E8F8824CD6EF5003D4FED /* Services */,
@@ -680,7 +686,9 @@
 				CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */,
 				330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */,
 				CD2E8F7C24CD63E9003D4FED /* User.swift in Sources */,
+				33B0A12F24CFB9F200FE0191 /* Reachability.swift in Sources */,
 				330A158F24CE647E006DECE8 /* NoteService.swift in Sources */,
+				33B0A13124CFC43000FE0191 /* LRErrorCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

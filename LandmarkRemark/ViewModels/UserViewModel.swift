@@ -21,7 +21,7 @@ class UserViewModel{
         return User(firstName: self.firstName, lastName: self.lastName, userName: self.userName, documentID: self.documentID)
     }
     
-    var userRef: DocumentReference{
+    var userRef: DocumentReference?{
         return self.service.getRef(forUser: self.user)
     }
     

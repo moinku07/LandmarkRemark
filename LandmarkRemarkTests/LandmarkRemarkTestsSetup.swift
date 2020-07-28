@@ -14,16 +14,28 @@ class LandmarkRemarkTests_Setup: XCTestCase{
     var locationVM: LocationViewModel!
     var mockUserService: MockUserService!
     var userVM: UserViewModel!
+    var mockNoteService: MockNoteService!
+    var noteVM: NoteViewModel!
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        self.mockLocationManager = MockLocationManager()
-        self.mockLocationManager.locationManagerAvailable = true
-        self.locationVM = LocationViewModel(locationManager: self.mockLocationManager)
+        mockLocationManager = MockLocationManager()
+        mockLocationManager.locationManagerAvailable = true
+        locationVM = LocationViewModel(locationManager: self.mockLocationManager)
         
-        self.mockUserService = MockUserService()
-        self.userVM = UserViewModel(service: self.mockUserService)
+        mockUserService = MockUserService()
+        userVM = UserViewModel(service: self.mockUserService)
+        
+        mockNoteService = MockNoteService()
+        noteVM = NoteViewModel(service: mockNoteService)
+    }
+    
+    func createDemoUser(){
+        userVM.firstName = "John"
+        userVM.lastName = "Smith"
+        userVM.userName = "johnsmith"
+        userVM.createUser(completion: nil)
     }
 }
 

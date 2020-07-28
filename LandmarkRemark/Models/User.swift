@@ -15,7 +15,7 @@ struct User: Codable, Hashable{
     var userName: String
     var documentID: String?
     
-    var ref: DocumentReference{
+    var ref: DocumentReference?{
         return UserService().getRef(forUser: self)
     }
     

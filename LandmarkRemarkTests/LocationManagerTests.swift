@@ -58,13 +58,14 @@ class when_Authorisation_Denied_After_LocationManager_Started: LandmarkRemarkTes
     func test_Should_Return_State_NotAuthorised(){
         self.mockLocationManager.error = MockLocationManager.notAuthorisedError
         
-        let exp = expectation(for: NSPredicate(block: { (obj, _) -> Bool in
-            let vm = obj as! LocationViewModel
-            return vm.state == .notAuthorised
-        }), evaluatedWith: self.locationVM, handler: nil)
+        let exp = XCTestExpectation(description: "Location Denied after start")
         
-        self.locationVM.startLocationManager(completion: nil)
+        self.locationVM.startLocationManager { _, _ in
+            XCTAssertEqual(self.locationVM.state, .notAuthorised)
+            
+            exp.fulfill()
+        }
         
-        wait(for: [exp], timeout: 2.0)
+        wait(for: [exp], timeout: 5.0)
     }
 }

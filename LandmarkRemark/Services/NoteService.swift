@@ -49,5 +49,10 @@ class NoteService: NoteServiceProtocol{
             }
         }
     }
+    
+    func removeGetNotesSubscription() {
+        self.listener?.remove()
+        self.listener = nil
+    }
 }
 

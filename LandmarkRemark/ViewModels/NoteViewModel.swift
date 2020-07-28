@@ -27,6 +27,12 @@ class NoteViewModel{
     }
     
     func saveNote(completion: @escaping (Notes?, Error?)->Void){
+        if self.userRef == nil{
+            let error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.ObjectNotFound.hashValue, userInfo: nil)
+            
+            completion(nil, error)
+            return
+        }
         self.service.saveNote(note: self.note) { _note, error in
             completion(_note, error)
         }
@@ -36,5 +42,9 @@ class NoteViewModel{
         self.service.getNotes(for: user) { notes, error in
             completion(notes, error)
         }
+    }
+    
+    func removeGetNoteSubscription(){
+        self.service.removeGetNotesSubscription()
     }
 }
