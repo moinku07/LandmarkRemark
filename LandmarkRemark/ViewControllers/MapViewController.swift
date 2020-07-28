@@ -226,7 +226,7 @@ extension MapViewController: MKMapViewDelegate{
         
         if annotation is MKUserLocation{
             // do not show the callout for current location
-            (annotation as? MKUserLocation)?.title = ""
+            (annotation as? MKUserLocation)?.title = "MyMarker"
             return nil
         }
         
@@ -251,6 +251,14 @@ extension MapViewController: MKMapViewDelegate{
         annotationView?.tintColor = .green
         
         return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        for view in views {
+            if view.annotation is MKUserLocation {
+                view.canShowCallout = false
+            }
+        }
     }
 }
 
