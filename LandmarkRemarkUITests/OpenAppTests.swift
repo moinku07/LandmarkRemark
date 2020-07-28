@@ -12,10 +12,10 @@ import XCTest
 class when_I_launch_the_app: LandmarkRemarkUITests_Setup{
     func test_then_I_Should_See_MyCurrentLocation_OnMap(){
         // Ensure you have selected a Location for the UI Test. Otherwise, simulator will return Error and test will not pass
-        let myMarker = app.otherElements["MyMarker"].firstMatch
-        let myMarkerExists = myMarker.waitForExistence(timeout: 5)
+        let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+        let UserLocationPinExists = UserLocationPin.waitForExistence(timeout: 5)
         
-        XCTAssertTrue(myMarkerExists)
+        XCTAssertTrue(UserLocationPinExists)
     }
     
     func test_I_should_see_other_users_note(){

@@ -246,7 +246,7 @@ extension MapViewController: MKMapViewDelegate{
         
         if annotation is MKUserLocation{
             // do not show the callout for current location
-            (annotation as? MKUserLocation)?.title = "MyMarker"
+            (annotation as? MKUserLocation)?.title = "UserLocationPin"
             return nil
         }
         

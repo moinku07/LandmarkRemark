@@ -28,19 +28,19 @@ class CucumberishInitializer: NSObject{
             }
             
             Then("I should see my current location on a map"){ _, _ in
-                let myMarker = app.otherElements["MyMarker"].firstMatch
-                let myMarkerExists = myMarker.waitForExistence(timeout: 5)
+                let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+                let UserLocationPinExists = UserLocationPin.waitForExistence(timeout: 5)
                 
-                XCTAssertTrue(myMarkerExists)
+                XCTAssertTrue(UserLocationPinExists)
             }
             
             Given("I tap on my current location marker"){_, _ in
                 app.launch()
                 
-                let myMarker = app.otherElements["MyMarker"].firstMatch
-                _ = myMarker.waitForExistence(timeout: 5)
+                let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+                _ = UserLocationPin.waitForExistence(timeout: 5)
                 
-                myMarker.tap()
+                UserLocationPin.tap()
             }
             
             When("I add note"){args, userInfo in

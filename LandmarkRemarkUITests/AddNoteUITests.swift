@@ -11,10 +11,10 @@ import XCTest
 
 class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
     func test_then_app_should_show_a_textinput_to_type_a_note(){
-        let myMarker = app.otherElements["MyMarker"].firstMatch
-        _ = myMarker.waitForExistence(timeout: 5)
+        let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+        _ = UserLocationPin.waitForExistence(timeout: 5)
         
-        myMarker.tap()
+        UserLocationPin.tap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
         let alertExists = alert.waitForExistence(timeout: 5)
@@ -23,10 +23,10 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
     }
     
     func test_app_should_save_text_typed_in_the_alert_textfield(){
-        let myMarker = app.otherElements["MyMarker"].firstMatch
-        _ = myMarker.waitForExistence(timeout: 5)
+        let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+        _ = UserLocationPin.waitForExistence(timeout: 5)
         
-        myMarker.tap()
+        UserLocationPin.tap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
         _ = alert.waitForExistence(timeout: 5.0)
