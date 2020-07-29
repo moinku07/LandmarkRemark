@@ -56,14 +56,30 @@ class NoteService: NoteServiceProtocol{
     func search(term: String, completion: @escaping ([Notes]?, Error?) -> Void) {
         db.collection("notes")
             .whereField("note", isGreaterThanOrEqualTo: term.uppercased())
-            .whereField("note", isLessThanOrEqualTo: term.lowercased())
-//            .whereField("userName", isGreaterThanOrEqualTo: term)
-//            .whereField("userName", isLessThanOrEqualTo: term)
+            .whereField("note", isLessThanOrEqualTo: term.lowercased() + "\u{f8ff}")
+            .getDocuments { querySnapshot, error in
+            if error != nil{
+                self.search(byUsername: term, resultConcating: nil, completion: completion)
+            }else if let notes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
+                self.search(byUsername: term, resultConcating: notes.filter{$0.note.lowercased().contains(term.lowercased())}, completion: completion)
+            }
+        }
+    }
+    
+    private func search(byUsername term: String, resultConcating notes: [Notes]?, completion: @escaping ([Notes]?, Error?) -> Void){
+        db.collection("notes")
+            .whereField("userName", isGreaterThanOrEqualTo: term.lowercased())
             .getDocuments { querySnapshot, error in
             if let error = error{
-                completion(nil, error)
-            }else if let notes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
-                completion(notes, nil)
+                completion(notes, error)
+            }else if let userNotes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
+                if notes != nil{
+                    completion(notes! + userNotes.filter{$0.userName.lowercased().contains(term.lowercased())}, nil)
+                }else{
+                    completion(userNotes.filter{$0.userName.lowercased().contains(term.lowercased())}, nil)
+                }
+            }else{
+                completion(notes, error)
             }
         }
     }

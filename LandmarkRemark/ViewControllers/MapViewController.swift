@@ -183,15 +183,12 @@ extension MapViewController{
     
     // start location updates to get current device location
     func startLocationUpdates(){
-        self.locationVM.startLocationManager{ _, error in
+        self.locationVM.startLocationManager{ location, error in
             DispatchQueue.main.async {
                 if let error = error{
                     self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else{
                     self.updateUserMarkerLocation()
-                    // As we need user/device location once to display on map, we should stop locationManager.
-                    // Otherwise, the marker will keep updating user's location whenever changes
-                    self.locationVM.stopLocationManager()
                 }
             }
         }

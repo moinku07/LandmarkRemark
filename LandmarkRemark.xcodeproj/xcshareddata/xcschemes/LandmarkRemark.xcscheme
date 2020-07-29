@@ -71,6 +71,8 @@
             </LocationScenarioReference>
          </TestableReference>
       </Testables>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -92,6 +94,8 @@
             ReferencedContainer = "container:LandmarkRemark.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
       <LocationScenarioReference
          identifier = "../LandmarkRemark/Helpers/Perth.gpx"
          referenceType = "0">

@@ -22,7 +22,7 @@ class when_I_launch_the_app: LandmarkRemarkUITests_Setup{
         app.tap()
     }
     
-    func test_0then_I_Should_See_MyCurrentLocation_OnMap(){
+    func test_1_then_I_Should_See_MyCurrentLocation_OnMap(){
         // Ensure you have selected a Location for the UI Test. Otherwise, simulator will return Error and test will not pass
         let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
         let UserLocationPinExists = UserLocationPin.waitForExistence(timeout: 5)
@@ -30,27 +30,12 @@ class when_I_launch_the_app: LandmarkRemarkUITests_Setup{
         XCTAssertTrue(UserLocationPinExists)
     }
     
-    func test_I_should_see_other_users_note(){
+    func test_2_I_should_see_other_users_note(){
         // wait for 5 seconds to load the notes
         sleep(5)
         
         let count = app.otherElements.matching(NSPredicate(format: "identifier CONTAINS[c] %@", "Marker_")).count
         
         XCTAssertTrue(count > 0)
-    }
-    
-    func test_I_can_search_note_or_user(){
-        let searchField = app.searchFields.firstMatch
-        _ = searchField.waitForExistence(timeout: 5.0)
-        searchField.tap()
-        searchField.typeText("Test note")
-        
-        app.buttons["Search"].tap()
-        
-        sleep(5)
-        
-        let testNoteMatchCount = app.otherElements.matching(NSPredicate(format: "label CONTAINS[c] %@", "Test note")).count
-        
-        XCTAssert(testNoteMatchCount > 0)
     }
 }

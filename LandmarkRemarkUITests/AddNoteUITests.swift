@@ -10,7 +10,7 @@ import XCTest
 @testable import LandmarkRemark
 
 class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
-    func test_then_app_should_show_a_textinput_to_type_a_note(){
+    func test_3_then_app_should_show_a_textinput_to_type_a_note(){
         let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
         _ = UserLocationPin.waitForExistence(timeout: 5)
         
@@ -29,7 +29,7 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         XCTAssertTrue(alertExists)
     }
     
-    func test_app_should_save_text_typed_in_the_alert_textfield(){
+    func test_4_app_should_save_text_typed_in_the_alert_textfield(){
         let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
         _ = UserLocationPin.waitForExistence(timeout: 5)
         
@@ -58,6 +58,21 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         let count = app.otherElements.matching(NSPredicate(format: "label CONTAINS[c] %@", note)).count
         
         XCTAssertTrue(count > 0)
+    }
+    
+    func test_5_I_can_search_note_or_user(){
+        let searchField = app.searchFields.firstMatch
+        _ = searchField.waitForExistence(timeout: 5.0)
+        searchField.tap()
+        searchField.typeText("Test note")
+        
+        app.buttons["Search"].tap()
+        
+        sleep(5)
+        
+        let testNoteMatchCount = app.otherElements.matching(NSPredicate(format: "label CONTAINS[c] %@", "Test note")).count
+        
+        XCTAssert(testNoteMatchCount > 0)
     }
 }
 
