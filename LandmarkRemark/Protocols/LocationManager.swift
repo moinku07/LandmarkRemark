@@ -9,11 +9,12 @@
 import Foundation
 import CoreLocation
 
+// Blueprint for the LocationManger
 protocol LocationManager{
-    var locationManagerAvailable: Bool {get}
-    var permissionDenied: Bool {get}
-    var currentLocation: CLLocation? {get}
+    var locationManagerAvailable: Bool {get} // return whether the location manager is available or not. defaults to false
+    var permissionDenied: Bool {get} // returns the status of permission denial. defaults to false
+    var currentLocation: CLLocation? {get} // returns the last known current device location. defaults to nil
     
-    func start(completion: @escaping (CLLocation?, Error?)->Void)
-    func stop()
+    func start(completion: @escaping (CLLocation?, Error?)->Void) // start the location manager to monitor location updates
+    func stop() // stop the location updates
 }

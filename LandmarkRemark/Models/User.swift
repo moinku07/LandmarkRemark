@@ -15,14 +15,6 @@ struct User: Codable, Hashable{
     var userName: String
     var documentID: String?
     
-    var ref: DocumentReference?{
-        return UserService().getRef(forUser: self)
-    }
-    
-//    private enum CodingKeys: String, CodingKey {
-//        case firstName, lastName, userName
-//    }
-    
     init(firstName: String, lastName: String, userName: String, documentID: String?){
         self.firstName = firstName
         self.lastName = lastName
@@ -39,10 +31,12 @@ struct User: Codable, Hashable{
         self.documentID = try container.decodeIfPresent(String.self, forKey: .documentID) ?? nil
     }
     
+    // parse/decode dictionary
     init(dictionary: [String: Any]) throws {
         self = try JSONDecoder().decode(User.self, from: JSONSerialization.data(withJSONObject: dictionary))
     }
     
+    // returns the sturcture as a dictionary
     var asDictionary : [String:Any] {
       let mirror = Mirror(reflecting: self)
       let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in

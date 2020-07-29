@@ -2,7 +2,7 @@
 //  Notes.swift
 //  LandmarkRemark
 //
-//  Created by St John Ambulance on 27/7/20.
+//  Created by Moin Uddin on 27/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
@@ -13,19 +13,12 @@ import FirebaseFirestoreSwift
 struct Notes: Codable, Hashable{
     var note: String
     var geo: GeoPoint?
-    var user: DocumentReference?
+    var userName: String
     var documentID: String?
     
-        private enum CodingKeys: String, CodingKey {
-            case note
-            case geo
-            case user
-            case documentID
-        }
-    
-    init(note: String, geo: GeoPoint, user: DocumentReference, documentID: String?){
+    init(note: String, geo: GeoPoint, userName: String, documentID: String?){
         self.note = note
-        self.user = user
+        self.userName = userName
         self.geo = geo
         self.documentID = documentID
     }
@@ -34,15 +27,17 @@ struct Notes: Codable, Hashable{
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         self.note = try container.decodeIfPresent(String.self, forKey: .note) ?? ""
-        self.user = try container.decodeIfPresent(DocumentReference.self, forKey: .user) ?? nil
+        self.userName = try container.decodeIfPresent(String.self, forKey: .userName) ?? ""
         self.geo = try container.decodeIfPresent(GeoPoint.self, forKey: .geo) ?? nil
         self.documentID = try container.decodeIfPresent(String.self, forKey: .documentID) ?? nil
     }
     
+    // parse/decode the dictionary and map to the structure properties
     init(dictionary: [String: Any]) throws {
         self = try JSONDecoder().decode(Notes.self, from: JSONSerialization.data(withJSONObject: dictionary))
     }
     
+    // returns the structure properties with value as a dictionary
     var asDictionary : [String:Any] {
       let mirror = Mirror(reflecting: self)
       let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in

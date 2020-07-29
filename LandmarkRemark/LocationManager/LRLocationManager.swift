@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+// LRLocationManager adopts LocationManager protocol and provides functionality to monitor device location
+
 class LRLocationManager: NSObject, LocationManager{
     var locationManager: CLLocationManager!
     
@@ -18,17 +20,17 @@ class LRLocationManager: NSObject, LocationManager{
             && CLLocationManager.authorizationStatus() != .notDetermined
             && CLLocationManager.authorizationStatus() != .restricted
             && CLLocationManager.authorizationStatus() != .denied
-    }
+    } // return the availability of the location manager. returns true when authorisation permitted
     
     var permissionDenied: Bool {
         return CLLocationManager.authorizationStatus() == .denied
-    }
+    } // returns the permission denial status
     
     var currentLocation: CLLocation?{
         return self.locationManager.location
-    }
+    } // returns the last known device location or nil
     
-    var completion: ((CLLocation?, Error?) -> Void)?
+    private var completion: ((CLLocation?, Error?) -> Void)?
     
     override init() {
         super.init()

@@ -2,7 +2,7 @@
 //  NoteService.swift
 //  LandmarkRemark
 //
-//  Created by St John Ambulance on 27/7/20.
+//  Created by Moin Uddin on 27/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import FirebaseFirestore
 class NoteService: NoteServiceProtocol{
     var db: Firestore!
     
-    private var listener: ListenerRegistration?
+    private var listener: ListenerRegistration? // registered listener for getting notes. default nil
     
     init() {
         let settings = FirestoreSettings()
@@ -20,6 +20,7 @@ class NoteService: NoteServiceProtocol{
         db = Firestore.firestore()
     }
     
+    // save the note on Firestore and return the status
     func saveNote(note: Notes, completion: @escaping (Notes?, Error?) -> Void) {
         var ref: DocumentReference?
         ref = db.collection("notes").addDocument(data: note.asDictionary) { error in
@@ -33,10 +34,12 @@ class NoteService: NoteServiceProtocol{
         }
     }
     
+    // get all notes or notes for a user
     func getNotes(for user: User?, completion: @escaping ([Notes]?, Error?)->Void){
         let noteCollection = db.collection("notes")
+        
         if let user = user{
-            //db.collection("users")
+            noteCollection.whereField("userName", isEqualTo: user.userName)
         }
         
         listener?.remove()
@@ -54,6 +57,8 @@ class NoteService: NoteServiceProtocol{
         db.collection("notes")
             .whereField("note", isGreaterThanOrEqualTo: term.uppercased())
             .whereField("note", isLessThanOrEqualTo: term.lowercased())
+//            .whereField("userName", isGreaterThanOrEqualTo: term)
+//            .whereField("userName", isLessThanOrEqualTo: term)
             .getDocuments { querySnapshot, error in
             if let error = error{
                 completion(nil, error)

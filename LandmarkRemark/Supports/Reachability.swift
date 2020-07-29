@@ -2,12 +2,14 @@
 //  Reachability.swift
 //  LandmarkRemark
 //
-//  Created by St John Ambulance on 28/7/20.
+//  Created by Moin Uddin on 28/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
 import Foundation
 import SystemConfiguration
+
+// The Reachability class is to determine the network connectivity
 
 final class Reachability {
 

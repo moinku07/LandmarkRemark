@@ -7,18 +7,10 @@
 //
 
 import Foundation
-import FirebaseFirestore
 @testable import LandmarkRemark
 
 class MockUserService: UserServiceProtocol{
     var error: Error?
-    
-    func getRef(forUser user: User)->DocumentReference? {
-        guard let documentID = user.documentID else{
-            return nil
-        }
-        return Firestore.firestore().collection("user").document(documentID)
-    }
     
     func createUser(user: User, completion: @escaping (User?, Error?) -> Void) {
         DispatchQueue.global(qos: .default).async {

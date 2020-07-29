@@ -18,17 +18,13 @@ class UserService: UserServiceProtocol{
         db = Firestore.firestore()
     }
     
-    func getRef(forUser user: User)->DocumentReference?{
-        guard let documentID = user.documentID else{
-            return nil
-        }
-        return db.collection("user").document(documentID)
-    }
-    
+    // createUser method tries to get an existing user and returns the user.
+    // Otherwise, creates the user and returns the user.
     func createUser(user: User, completion: @escaping (User?, Error?)->Void){
         self.getUser(user: user, completion: completion)
     }
     
+    // get the user document from Firestore
     private func getUser(user: User, completion: @escaping (User?, Error?)->Void){
         db.collection("users").whereField("userName", isEqualTo: user.userName).getDocuments { querySnapshot, error in
             if let error = error{
@@ -49,6 +45,7 @@ class UserService: UserServiceProtocol{
         }
     }
     
+    // add/create a user and return the user
     private func addUser(user: User, completion: @escaping (User?, Error?)->Void){
         var ref: DocumentReference?
         ref = db.collection("users").addDocument(data: user.asDictionary) { error in

@@ -2,7 +2,7 @@
 //  NoteViewModel.swift
 //  LandmarkRemark
 //
-//  Created by St John Ambulance on 27/7/20.
+//  Created by Moin Uddin on 27/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
@@ -12,14 +12,14 @@ import FirebaseFirestoreSwift
 
 class NoteViewModel{
     var noteText: String = ""
-    var userRef: DocumentReference?
+    var userName: String = ""
     var geo: GeoPoint?
     var documentID: String?
     
     var service: NoteServiceProtocol!
     
     private var note: Notes{
-        return Notes(note: noteText, geo: geo!, user: self.userRef!, documentID: documentID)
+        return Notes(note: noteText, geo: geo!, userName: self.userName, documentID: documentID)
     }
     
     init(service: NoteServiceProtocol) {
@@ -27,7 +27,7 @@ class NoteViewModel{
     }
     
     func saveNote(completion: @escaping (Notes?, Error?)->Void){
-        if self.userRef == nil{
+        if self.userName == ""{
             let error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.ObjectNotFound.rawValue, userInfo: nil)
             
             completion(nil, error)

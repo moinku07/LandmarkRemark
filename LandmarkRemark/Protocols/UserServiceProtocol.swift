@@ -10,6 +10,5 @@ import Foundation
 import FirebaseFirestore
 
 protocol UserServiceProtocol {
-    func getRef(forUser user: User)->DocumentReference?
-    func createUser(user: User, completion: @escaping (User?, Error?)->Void)
+    func createUser(user: User, completion: @escaping (User?, Error?)->Void) // method to create or get the user
 }

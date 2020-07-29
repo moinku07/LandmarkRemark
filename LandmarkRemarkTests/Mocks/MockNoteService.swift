@@ -2,7 +2,7 @@
 //  MockNoteService.swift
 //  LandmarkRemarkTests
 //
-//  Created by St John Ambulance on 27/7/20.
+//  Created by Moin Uddin on 27/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
@@ -35,7 +35,7 @@ class MockNoteService: NoteServiceProtocol{
             if let error = self.error{
                 completion(nil, error)
             }else{
-                let notes = [Notes(note: "Test", geo: GeoPoint(latitude: -31.959299, longitude: 115.858496), user: Firestore.firestore().collection("user").document("nbb6767s"), documentID: nil)]
+                let notes = [Notes(note: "Test", geo: GeoPoint(latitude: -31.959299, longitude: 115.858496), userName: "johnsmith", documentID: nil)]
                 completion(notes, nil)
             }
         }

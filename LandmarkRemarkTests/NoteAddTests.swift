@@ -2,7 +2,7 @@
 //  NoteAddTests.swift
 //  LandmarkRemarkTests
 //
-//  Created by St John Ambulance on 27/7/20.
+//  Created by Moin Uddin on 27/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import FirebaseFirestore
 @testable import LandmarkRemark
 
 class when_User_submits_note: LandmarkRemarkTests_Setup{
-    func test_should_not_save_when_no_userRef(){
+    func test_should_not_save_when_no_userName(){
         noteVM.noteText = "This is my first note"
         noteVM.geo = GeoPoint(latitude: -31.959299, longitude: 115.858496)
         
@@ -42,7 +42,7 @@ class when_User_submits_note: LandmarkRemarkTests_Setup{
         self.mockNoteService.error = NSError(domain: String(describing: LRErrorCode.self), code: LRErrorCode.NoInternet.rawValue, userInfo: nil)
         
         userVM.createUser { _, _ in
-            self.noteVM.userRef = self.userVM.userRef
+            self.noteVM.userName = self.userVM.userName
             self.noteVM.saveNote { note, error in
                 
                 if let nsError = error as NSError?{
@@ -67,7 +67,7 @@ class when_User_submits_note: LandmarkRemarkTests_Setup{
         self.noteVM.geo = GeoPoint(latitude: -31.959299, longitude: 115.858496)
         
         userVM.createUser { _, _ in
-            self.noteVM.userRef = self.userVM.userRef
+            self.noteVM.userName = self.userVM.userName
             self.noteVM.saveNote { note, error in
                 XCTAssertNotNil(note?.documentID, "Note was not saved")
                 

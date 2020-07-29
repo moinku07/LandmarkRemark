@@ -61,6 +61,7 @@ class MapViewController: UIViewController {
         })
         
         noteVM = NoteViewModel(service: NoteService())
+        
         /*
         DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
             let vc = UIViewController()
@@ -91,6 +92,7 @@ class MapViewController: UIViewController {
         self.noteVM?.removeGetNoteSubscription()
     }
     
+    // method to present an alert
     func showAlert(title: String, message: String, buttons: [String]){
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         buttons.forEach{
@@ -101,6 +103,7 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController{
+    // load notes from firestore using the note service
     func loadNotes(){
         if Reachability.shared.isConnectedToNetwork{
             noteVM?.getNotes(forUser: nil, completion: {[unowned self] notes, error in
@@ -119,15 +122,19 @@ extension MapViewController{
         }
     }
     
+    // set annotations on the map from the notes
     func setAnnotations(fromNotes notes: [Notes]){
         self.mapView.removeAnnotations(self.annotations)
         self.annotations.removeAll()
+        
+        var wasAnnotationSelected: Bool = false
+        
         notes.forEach{
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: $0.geo!.latitude, longitude: $0.geo!.longitude)
             annotation.subtitle = $0.note
             
-            Firestore.firestore().collection("users").whereField(FieldPath.documentID(), isEqualTo: $0.user!.documentID).getDocuments { documentSnapshot, error in
+            Firestore.firestore().collection("users").whereField("userName", isEqualTo: $0.userName).getDocuments { documentSnapshot, error in
                 if let error = error{
                     self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else if let data = documentSnapshot?.documents.first?.data(){
@@ -139,15 +146,20 @@ extension MapViewController{
             
             if annotation.subtitle == self.noteText{
                 self.mapView.selectAnnotation(annotation, animated: true)
+                wasAnnotationSelected = true
             }
         }
         
         self.mapView.showAnnotations(self.mapView.annotations, animated: true)
+        
+        if !wasAnnotationSelected && self.annotations.count > 0{
+            self.mapView.selectAnnotation(self.annotations.last!, animated: true)
+        }
     }
 }
 
 extension MapViewController{
-    
+    // handles the location authorisation, show appropriate prompt or starts location updates if authorisation given already
     func requestLocationAuthorisation(){
         if CLLocationManager.authorizationStatus() == .notDetermined{
             if(locationManager == nil){
@@ -169,6 +181,7 @@ extension MapViewController{
         }
     }
     
+    // start location updates to get current device location
     func startLocationUpdates(){
         self.locationVM.startLocationManager{ _, error in
             DispatchQueue.main.async {
@@ -184,6 +197,7 @@ extension MapViewController{
         }
     }
     
+    // zoom in to device location on the map
     func updateUserMarkerLocation(){
         if let currentLocation = self.locationVM.currentLocation?.coordinate{
             // zoom in to user/device location
@@ -202,7 +216,7 @@ extension MapViewController: MKMapViewDelegate{
                 return
             }
             
-            guard let userRef = self.userVM?.userRef else{
+            if self.userVM?.userName == ""{
                 self.showAlert(title: "Warning", message: "App could not retrieve the logged in user. Please check device internet connection and try again", buttons: ["Okay"])
                 return
             }
@@ -218,7 +232,7 @@ extension MapViewController: MKMapViewDelegate{
                 if let text = alert.textFields?.first?.text{
                     let noteVM = NoteViewModel(service: NoteService())
                     noteVM.noteText = text
-                    noteVM.userRef = userRef
+                    noteVM.userName = self.userVM!.userName
                     noteVM.geo = GeoPoint(latitude: self.locationVM.currentLocation!.coordinate.latitude, longitude: self.locationVM.currentLocation!.coordinate.longitude)
                     self.noteText = text
                     noteVM.saveNote { note, error in
@@ -276,9 +290,10 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        for view in views {
-            if view.annotation is MKUserLocation {
-                view.canShowCallout = false
+        // this may not be necessary but I did not want to show the callout for device location annotation
+        views.forEach{
+            if $0.annotation is MKUserLocation{
+                $0.canShowCallout = false
             }
         }
     }
@@ -305,6 +320,7 @@ extension MapViewController: UISearchBarDelegate{
             
             noteVM?.search(term: searchBar.text!, completion: { notes, error in
                 if let error = error{
+                    print(error.localizedDescription)
                     self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else if let notes = notes{
                     self.setAnnotations(fromNotes: notes)

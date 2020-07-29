@@ -21,10 +21,6 @@ class UserViewModel{
         return User(firstName: self.firstName, lastName: self.lastName, userName: self.userName, documentID: self.documentID)
     }
     
-    var userRef: DocumentReference?{
-        return self.service.getRef(forUser: self.user)
-    }
-    
     init(service: UserServiceProtocol) {
         self.service = service
     }
