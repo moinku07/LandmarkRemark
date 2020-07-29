@@ -97,6 +97,8 @@ class CucumberishInitializer: NSObject{
             
             Then("I should able to search for a note based on contained text or user-name"){ _, _ in
                 let searchField = app.searchFields.firstMatch
+                _ = searchField.waitForExistence(timeout: 5.0)
+                
                 searchField.tap()
                 searchField.typeText("Test note")
                 

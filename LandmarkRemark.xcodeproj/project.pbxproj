@@ -987,8 +987,8 @@
 			baseConfigurationReference = 8E82D575A7653A8DF1415612 /* Pods-LandmarkRemark-LandmarkRemarkUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WXBU8TXC63;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -998,6 +998,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.stjohnambulance.LandmarkRemarkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = LandmarkRemark;
@@ -1009,8 +1011,8 @@
 			baseConfigurationReference = B049E844111D2EE072259CFA /* Pods-LandmarkRemark-LandmarkRemarkUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WXBU8TXC63;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = LandmarkRemarkUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1020,6 +1022,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = au.com.stjohnambulance.LandmarkRemarkUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = LandmarkRemark;

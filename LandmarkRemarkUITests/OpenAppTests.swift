@@ -29,6 +29,7 @@ class when_I_launch_the_app: LandmarkRemarkUITests_Setup{
     
     func test_I_can_search_note_or_user(){
         let searchField = app.searchFields.firstMatch
+        _ = searchField.waitForExistence(timeout: 5.0)
         searchField.tap()
         searchField.typeText("Test note")
         
