@@ -80,8 +80,6 @@ class MapViewController: UIViewController {
         }else if self.locationVM.state == .notStarted{
             self.startLocationUpdates()
         }
-        
-        loadNotes()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -200,6 +198,7 @@ extension MapViewController{
             // zoom in to user/device location
             let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapView.setRegion(region, animated: true)
+            self.loadNotes()
         }
     }
 }
