@@ -59,8 +59,8 @@ class LocationViewModel{
     }
     
     func stopLocationManager(){
+        self.completion = nil
         self.state = .notStarted
         self.locationManager.stop()
-        self.completion = nil
     }
 }

@@ -104,6 +104,7 @@ extension MapViewController{
     // load notes from firestore using the note service
     func loadNotes(){
         if Reachability.shared.isConnectedToNetwork{
+            noteVM?.removeGetNoteSubscription()
             noteVM?.getNotes(forUser: nil, completion: {[unowned self] notes, error in
                 DispatchQueue.main.async {
                     if let error = error{
@@ -187,6 +188,8 @@ extension MapViewController{
                     self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else{
                     self.updateUserMarkerLocation()
+                    // stop location manager as we need user location once
+                    self.locationVM.stopLocationManager()
                 }
             }
         }
