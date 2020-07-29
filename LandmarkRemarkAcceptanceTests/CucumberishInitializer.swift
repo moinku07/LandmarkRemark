@@ -23,6 +23,21 @@ class CucumberishInitializer: NSObject{
             app = XCUIApplication()
         }
         before({ _ in
+            
+            Given("I launch the app"){ _, _ in
+                XCTestCase().addUIInterruptionMonitor(withDescription: "Location Services"){ alert -> Bool in
+                    if alert.buttons["Allow"].exists {
+                        alert.buttons["Allow"].tap()
+                    }
+                    return true
+                }
+                app.launch()
+            }
+            
+            Then("I should see location permission alert"){ _, _ in
+                app.tap()
+            }
+            
             Given("I launch the app") { _, _ in
                 app.launch()
             }

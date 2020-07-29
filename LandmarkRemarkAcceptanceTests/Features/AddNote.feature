@@ -1,5 +1,10 @@
 Feature: Adding Note
 
+Scenario: As a user when I launch the app for the first time it should ask location permission
+
+Given I launch the app
+Then I should see location permission alert
+
 Scenario: As a user I can see my current location on a map
 
 Given I launch the app
