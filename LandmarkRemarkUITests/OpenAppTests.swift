@@ -29,13 +29,4 @@ class when_I_launch_the_app: LandmarkRemarkUITests_Setup{
         
         XCTAssertTrue(UserLocationPinExists)
     }
-    
-    func test_2_I_should_see_other_users_note(){
-        // wait for 5 seconds to load the notes
-        sleep(5)
-        
-        let count = app.otherElements.matching(NSPredicate(format: "identifier CONTAINS[c] %@", "Marker_")).count
-        
-        XCTAssertTrue(count > 0)
-    }
 }

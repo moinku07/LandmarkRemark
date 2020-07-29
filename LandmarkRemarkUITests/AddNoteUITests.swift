@@ -60,7 +60,16 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         XCTAssertTrue(count > 0)
     }
     
-    func test_5_I_can_search_note_or_user(){
+    func test_5_I_should_see_other_users_note(){
+        // wait for 5 seconds to load the notes
+        sleep(5)
+        
+        let count = app.otherElements.matching(NSPredicate(format: "identifier CONTAINS[c] %@", "Marker_")).count
+        
+        XCTAssertTrue(count > 0)
+    }
+    
+    func test_6_I_can_search_note_or_user(){
         let searchField = app.searchFields.firstMatch
         _ = searchField.waitForExistence(timeout: 5.0)
         searchField.tap()
