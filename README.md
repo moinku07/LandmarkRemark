@@ -29,4 +29,4 @@ pod install
 
 Open "LandmarkRemark.xcworkspace" on Xcode 10.3 or later.
 
-Press Command + X. It will start the Unit, UI and Acceptance tests.
+Press Command + U. It will start the Unit, UI and Acceptance tests.
