@@ -22,6 +22,11 @@ you will require a Provisioning profile, a different bundle identifier and fireb
 
 For simulators, set a simulated location from Simulator menu Features/Debug -> Location -> Custom location.
 
-Open the project on Xcode 10.3 or later.
+On terminal, navigate to project folder and run the following command
+```
+pod install
+```
+
+Open "LandmarkRemark.xcworkspace" on Xcode 10.3 or later.
 
 Press Command + X. It will start the Unit, UI and Acceptance tests.
