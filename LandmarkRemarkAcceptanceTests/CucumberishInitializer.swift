@@ -23,51 +23,9 @@ class CucumberishInitializer: NSObject{
             app = XCUIApplication()
             
             app.launchArguments.append("--uitesting")
-            
-            sleep(5)
         }
         
         before({ _ in
-            //Scenario: As a user when I launch the app for the first time I should see login screen
-            Given("I launch the app for the first time"){_,_ in
-                app.launchArguments.append("--uitesting-login")
-                app.launch()
-            }
-            
-            Then("I should see login screen"){_, _ in
-                let view = app.otherElements["LoginViewController"].firstMatch
-                let exists = view.waitForExistence(timeout: 5.0)
-                
-                XCTAssertTrue(exists)
-            }
-            
-            //Scenario: As a user when I enter user credentials and tap login I should see map view
-            Given("I launch the app for the first time"){_,_ in
-                app.launchArguments.append("--uitesting-login")
-                app.launch()
-            }
-            
-            When("I enter user credentials \"(.*)\"$ and tap login"){ args, _ in
-                let username: String = args!.first!.components(separatedBy: ",").first!
-                let password: String = args!.first!.components(separatedBy: ",").last!
-                
-                let userNameField = app.textFields["Username"].firstMatch
-                userNameField.tap()
-                userNameField.typeText(username)
-                
-                let passwordField = app.secureTextFields["Password"].firstMatch
-                passwordField.tap()
-                passwordField.typeText(password)
-                
-                app.buttons["Login"].firstMatch.tap()
-            }
-            
-            Then("I should see login screen"){_, _ in
-                let view = app.otherElements["MapViewController"].firstMatch
-                let exists = view.waitForExistence(timeout: 5.0)
-                XCTAssertTrue(exists)
-            }
-            
             //Scenario: As a user when I launch the app for the first time it should ask location permission
             Given("I launch the app"){ _, _ in
                 XCTestCase().addUIInterruptionMonitor(withDescription: "Location Services"){ alert -> Bool in
