@@ -30,8 +30,12 @@
 		33A2F51924CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F51824CA67A8008209F2 /* LandmarkRemarkTestsSetup.swift */; };
 		33A2F52424CA67A8008209F2 /* LandmarkRemarkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F52324CA67A8008209F2 /* LandmarkRemarkUITests.swift */; };
 		33A2F53824CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A2F53724CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift */; };
+		33AEFCF324D26CB600BCE840 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEFCF224D26CB600BCE840 /* LoginViewController.swift */; };
+		33AEFCF524D26E2C00BCE840 /* LRAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33AEFCF424D26E2C00BCE840 /* LRAlertController.swift */; };
 		33B0A12F24CFB9F200FE0191 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B0A12E24CFB9F200FE0191 /* Reachability.swift */; };
 		33B0A13124CFC43000FE0191 /* LRErrorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B0A13024CFC43000FE0191 /* LRErrorCode.swift */; };
+		33B52A1A24D2A13700E7C365 /* NoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B52A1924D2A13700E7C365 /* NoteCollectionViewCell.swift */; };
+		33B52A1C24D2A19600E7C365 /* NoteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B52A1B24D2A19600E7C365 /* NoteCollectionViewController.swift */; };
 		33E87C3424CAB1A000EC4A85 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E87C3324CAB1A000EC4A85 /* MapKit.framework */; };
 		7CAD6F1B58846911EF383A4B /* Pods_LandmarkRemark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3068078A2DCBA77A958BED /* Pods_LandmarkRemark.framework */; };
 		95A5822A591409C3ACF83EAC /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70407D01B3AD66145C38ACED /* Pods_LandmarkRemark_LandmarkRemarkUITests.framework */; };
@@ -111,8 +115,12 @@
 		33A2F53524CA684F008209F2 /* LandmarkRemarkAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LandmarkRemarkAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		33A2F53724CA684F008209F2 /* LandmarkRemarkAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRemarkAcceptanceTests.swift; sourceTree = "<group>"; };
 		33A2F53924CA684F008209F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33AEFCF224D26CB600BCE840 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		33AEFCF424D26E2C00BCE840 /* LRAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRAlertController.swift; sourceTree = "<group>"; };
 		33B0A12E24CFB9F200FE0191 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		33B0A13024CFC43000FE0191 /* LRErrorCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LRErrorCode.swift; sourceTree = "<group>"; };
+		33B52A1924D2A13700E7C365 /* NoteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		33B52A1B24D2A19600E7C365 /* NoteCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCollectionViewController.swift; sourceTree = "<group>"; };
 		33E87C3324CAB1A000EC4A85 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3F3068078A2DCBA77A958BED /* Pods_LandmarkRemark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LandmarkRemark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68CA48ED4255D796A001A842 /* Pods-LandmarkRemark.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LandmarkRemark.release.xcconfig"; path = "Target Support Files/Pods-LandmarkRemark/Pods-LandmarkRemark.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				330F007924CA8B0D005176AE /* MapViewController.swift */,
+				33AEFCF224D26CB600BCE840 /* LoginViewController.swift */,
+				33B52A1B24D2A19600E7C365 /* NoteCollectionViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -303,7 +313,7 @@
 			children = (
 				33A2F52324CA67A8008209F2 /* LandmarkRemarkUITests.swift */,
 				330F007724CA893D005176AE /* OpenAppTests.swift */,
-				330F006524CA74C4005176AE /* AddNoteUITests.swift */,
+				33AEFCF124D262A200BCE840 /* Notes */,
 				33A2F52524CA67A8008209F2 /* Info.plist */,
 			);
 			path = LandmarkRemarkUITests;
@@ -322,11 +332,20 @@
 			path = LandmarkRemarkAcceptanceTests;
 			sourceTree = "<group>";
 		};
+		33AEFCF124D262A200BCE840 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				330F006524CA74C4005176AE /* AddNoteUITests.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
 		33B0A13224CFD22800FE0191 /* Supports */ = {
 			isa = PBXGroup;
 			children = (
 				33B0A12E24CFB9F200FE0191 /* Reachability.swift */,
 				33B0A13024CFC43000FE0191 /* LRErrorCode.swift */,
+				33AEFCF424D26E2C00BCE840 /* LRAlertController.swift */,
 			);
 			path = Supports;
 			sourceTree = "<group>";
@@ -335,6 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				CD2E8F7124CD3568003D4FED /* LRPinAnnotation.swift */,
+				33B52A1924D2A13700E7C365 /* NoteCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -690,13 +710,17 @@
 				330F007524CA7A9F005176AE /* LRLocationManager.swift in Sources */,
 				CD2E8F8524CD6E29003D4FED /* UserViewModel.swift in Sources */,
 				CD2E8F8724CD6EE9003D4FED /* UserService.swift in Sources */,
+				33AEFCF524D26E2C00BCE840 /* LRAlertController.swift in Sources */,
 				330A158724CE5A20006DECE8 /* Notes.swift in Sources */,
 				33A2F50424CA67A6008209F2 /* AppDelegate.swift in Sources */,
 				330F007024CA7772005176AE /* LocationManager.swift in Sources */,
+				33B52A1A24D2A13700E7C365 /* NoteCollectionViewCell.swift in Sources */,
 				330F007A24CA8B0D005176AE /* MapViewController.swift in Sources */,
 				CD2E8F7224CD3568003D4FED /* LRPinAnnotation.swift in Sources */,
 				330F006A24CA76B6005176AE /* LocationViewModel.swift in Sources */,
+				33B52A1C24D2A19600E7C365 /* NoteCollectionViewController.swift in Sources */,
 				CD2E8F7C24CD63E9003D4FED /* User.swift in Sources */,
+				33AEFCF324D26CB600BCE840 /* LoginViewController.swift in Sources */,
 				33B0A12F24CFB9F200FE0191 /* Reachability.swift in Sources */,
 				330A158F24CE647E006DECE8 /* NoteService.swift in Sources */,
 				33B0A13124CFC43000FE0191 /* LRErrorCode.swift in Sources */,

@@ -14,6 +14,7 @@ class when_User_Information_Submitted: LandmarkRemarkTests_Setup{
         userVM.firstName = "John"
         userVM.lastName = "Smith"
         userVM.userName = "johnsmith"
+        userVM.password = "12345"
         
         let exp = XCTestExpectation(description: "User save")
         

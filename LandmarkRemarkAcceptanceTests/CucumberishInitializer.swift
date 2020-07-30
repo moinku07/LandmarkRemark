@@ -21,9 +21,54 @@ class CucumberishInitializer: NSObject{
             //Any global initialization can go here
             
             app = XCUIApplication()
-        }
-        before({ _ in
             
+            app.launchArguments.append("--uitesting")
+            
+            sleep(5)
+        }
+        
+        before({ _ in
+            //Scenario: As a user when I launch the app for the first time I should see login screen
+            Given("I launch the app for the first time"){_,_ in
+                app.launchArguments.append("--uitesting-login")
+                app.launch()
+            }
+            
+            Then("I should see login screen"){_, _ in
+                let view = app.otherElements["LoginViewController"].firstMatch
+                let exists = view.waitForExistence(timeout: 5.0)
+                
+                XCTAssertTrue(exists)
+            }
+            
+            //Scenario: As a user when I enter user credentials and tap login I should see map view
+            Given("I launch the app for the first time"){_,_ in
+                app.launchArguments.append("--uitesting-login")
+                app.launch()
+            }
+            
+            When("I enter user credentials \"(.*)\"$ and tap login"){ args, _ in
+                let username: String = args!.first!.components(separatedBy: ",").first!
+                let password: String = args!.first!.components(separatedBy: ",").last!
+                
+                let userNameField = app.textFields["Username"].firstMatch
+                userNameField.tap()
+                userNameField.typeText(username)
+                
+                let passwordField = app.secureTextFields["Password"].firstMatch
+                passwordField.tap()
+                passwordField.typeText(password)
+                
+                app.buttons["Login"].firstMatch.tap()
+            }
+            
+            Then("I should see login screen"){_, _ in
+                let view = app.otherElements["MapViewController"].firstMatch
+                let exists = view.waitForExistence(timeout: 5.0)
+                XCTAssertTrue(exists)
+            }
+            
+            //Scenario: As a user when I launch the app for the first time it should ask location permission
             Given("I launch the app"){ _, _ in
                 XCTestCase().addUIInterruptionMonitor(withDescription: "Location Services"){ alert -> Bool in
                     if alert.buttons["Allow"].exists {
@@ -38,6 +83,8 @@ class CucumberishInitializer: NSObject{
                 app.tap()
             }
             
+            
+            // Scenario: As a user I can see my current location on a map
             Given("I launch the app") { _, _ in
                 app.launch()
             }
@@ -49,13 +96,14 @@ class CucumberishInitializer: NSObject{
                 XCTAssertTrue(UserLocationPinExists)
             }
             
+            // Scenario: As a user I can save a short note at my current location
             Given("I tap on my current location marker"){_, _ in
                 app.launch()
                 
                 let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
                 _ = UserLocationPin.waitForExistence(timeout: 5)
                 
-                UserLocationPin.tap()
+                UserLocationPin.forceTap()
             }
             
             When("I add note"){args, userInfo in
@@ -63,7 +111,7 @@ class CucumberishInitializer: NSObject{
                 let exists = alert.waitForExistence(timeout: 5.0)
                 
                 if !exists{
-                    app.otherElements["UserLocationPin"].firstMatch.tap()
+                    app.otherElements["UserLocationPin"].firstMatch.forceTap()
                     _ = alert.waitForExistence(timeout: 5.0)
                 }
                 
@@ -81,6 +129,8 @@ class CucumberishInitializer: NSObject{
                 XCTAssertTrue(count > 0)
             }
             
+            
+            //Scenario: As a user I can see notes that I have saved at the location they were saved on the map
             Given("I launch the app"){ _, _ in
                 app.launch()
                 sleep(5)
@@ -92,6 +142,7 @@ class CucumberishInitializer: NSObject{
                 XCTAssertTrue(count > 0)
             }
             
+            //Scenario: As a user I can see the location, text, and user-name of notes other users have saved
             Given("I launch the app"){ _, _ in
                 app.launch()
                 
@@ -104,6 +155,7 @@ class CucumberishInitializer: NSObject{
                 XCTAssertTrue(count > 0)
             }
             
+            // Scenario: As a user I have the ability to search for a note based on contained text or user-name
             Given("I launch the app"){ _, _ in
                 app.launch()
                 

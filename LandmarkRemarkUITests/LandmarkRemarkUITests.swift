@@ -9,6 +9,12 @@
 import XCTest
 @testable import LandmarkRemark
 
+extension XCUIElement {
+    func forceTap() {
+        coordinate(withNormalizedOffset: CGVector(dx:0.5, dy:0.5)).tap()
+    }
+}
+
 class LandmarkRemarkUITests_Setup: XCTestCase{
     var app: XCUIApplication!
 
@@ -18,6 +24,13 @@ class LandmarkRemarkUITests_Setup: XCTestCase{
 
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         app = XCUIApplication()
+        
+        // this will set test username & password
+        app.launchArguments.append("--uitesting")
+        
         app.launch()
+        
+        // wait for 5 second for the app to load the mapview
+        sleep(5)
     }
 }

@@ -74,7 +74,8 @@ class NoteService: NoteServiceProtocol{
                 completion(notes, error)
             }else if let userNotes = querySnapshot?.documents.map({try! $0.data(as: Notes.self)}) as? [Notes]{
                 if notes != nil{
-                    completion(notes! + userNotes.filter{$0.userName.lowercased().contains(term.lowercased())}, nil)
+                    let allNotes = notes! + userNotes.filter{$0.userName.lowercased().contains(term.lowercased())}
+                    completion(Array(Set(allNotes)), nil)
                 }else{
                     completion(userNotes.filter{$0.userName.lowercased().contains(term.lowercased())}, nil)
                 }

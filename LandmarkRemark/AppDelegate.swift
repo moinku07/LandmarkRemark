@@ -20,6 +20,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        // reset the session if it's login UI test
+        if CommandLine.arguments.contains("--uitesting-login") {
+            UserDefaults.standard.setValue(nil, forKey: "username")
+            UserDefaults.standard.setValue(nil, forKey: "password")
+            UserDefaults.standard.synchronize()
+        }else if CommandLine.arguments.contains("--uitesting") {
+            UserDefaults.standard.setValue("johnsmith", forKey: "username")
+            UserDefaults.standard.setValue("12345", forKey: "password")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if let username = UserDefaults.standard.string(forKey: "username"), let password = UserDefaults.standard.string(forKey: "password"){
+            let mapVC: MapViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+            mapVC.user = User(firstName: "", lastName: "", userName: username, password: password, documentID: nil)
+            self.window?.rootViewController = mapVC
+        }
+        
         return true
     }
 

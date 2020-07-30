@@ -10,11 +10,32 @@ import XCTest
 @testable import LandmarkRemark
 
 class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
+    
+    // since the test runs alphabetical ascending order, I set 0 to do this test first
+    func test_0_I_should_see_location_permission_if_not_authorised(){
+        addUIInterruptionMonitor(withDescription: "Location Services"){ alert -> Bool in
+            if alert.buttons["Allow"].exists {
+                alert.buttons["Allow"].tap()
+            }
+            return true
+        }
+        app.launch()
+        app.tap()
+    }
+    
+    func test_1_then_I_Should_See_MyCurrentLocation_OnMap(){
+        // Ensure you have selected a Location for the UI Test. Otherwise, simulator will return Error and test will not pass
+        let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
+        let UserLocationPinExists = UserLocationPin.waitForExistence(timeout: 5)
+        
+        XCTAssertTrue(UserLocationPinExists)
+    }
+    
     func test_3_then_app_should_show_a_textinput_to_type_a_note(){
         let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
         _ = UserLocationPin.waitForExistence(timeout: 5)
-        
-        UserLocationPin.tap()
+        sleep(1)
+        UserLocationPin.forceTap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
         var alertExists = alert.waitForExistence(timeout: 5)
@@ -33,7 +54,7 @@ class when_I_tap_on_my_current_location_marker: LandmarkRemarkUITests_Setup{
         let UserLocationPin = app.otherElements["UserLocationPin"].firstMatch
         _ = UserLocationPin.waitForExistence(timeout: 5)
         
-        UserLocationPin.tap()
+        UserLocationPin.forceTap()
         
         let alert = app.alerts.matching(identifier: "AddNote").firstMatch
         let alertExists = alert.waitForExistence(timeout: 5.0)

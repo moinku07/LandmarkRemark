@@ -26,7 +26,7 @@ class UserService: UserServiceProtocol{
     
     // get the user document from Firestore
     private func getUser(user: User, completion: @escaping (User?, Error?)->Void){
-        db.collection("users").whereField("userName", isEqualTo: user.userName).getDocuments { querySnapshot, error in
+        db.collection("users").whereField("userName", isEqualTo: user.userName).whereField("password", isEqualTo: user.password).getDocuments { querySnapshot, error in
             if let error = error{
                 completion(nil, error)
             }else if let data = querySnapshot?.documents.first?.data(){

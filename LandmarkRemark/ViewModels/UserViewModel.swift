@@ -13,12 +13,13 @@ class UserViewModel{
     var firstName: String = ""
     var lastName: String = ""
     var userName: String = ""
+    var password: String = ""
     var documentID: String?
     
     var service: UserServiceProtocol
     
     private var user: User{
-        return User(firstName: self.firstName, lastName: self.lastName, userName: self.userName, documentID: self.documentID)
+        return User(firstName: self.firstName, lastName: self.lastName, userName: self.userName, password: self.password, documentID: self.documentID)
     }
     
     init(service: UserServiceProtocol) {

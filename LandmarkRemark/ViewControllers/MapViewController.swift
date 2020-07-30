@@ -17,15 +17,23 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    weak var noteCVC: NoteCollectionViewController?
+    
     var locationManager: CLLocationManager?
     
     var locationVM: LocationViewModel!
-    var userVM: UserViewModel?
+    var user: User!
     var noteVM: NoteViewModel?
     
     var noteText: String?
     
-    var annotations: [MKAnnotation] = [MKAnnotation]()
+    var annotations: [MKAnnotation] = [MKAnnotation](){
+        didSet{
+            DispatchQueue.main.async {
+                self.noteCVC?.annotations = self.annotations
+            }
+        }
+    }
     
     deinit {
         print("=====================")
@@ -36,6 +44,11 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        noteCVC = self.children.first as? NoteCollectionViewController
+        //noteCVC?.delegate = self
+        
+        self.view.accessibilityIdentifier = "MapViewController"
+        
         searchBar.accessibilityIdentifier = "SearchBar"
         searchBar.delegate = self
         
@@ -44,21 +57,6 @@ class MapViewController: UIViewController {
         
         let locationManager = LRLocationManager()
         self.locationVM = LocationViewModel(locationManager: locationManager)
-        
-        userVM = UserViewModel(service: UserService())
-        userVM?.firstName = "John"
-        userVM?.lastName = "Smith"
-        userVM?.userName = "johnsmith"
-        
-        userVM?.createUser(completion: { [unowned self] (user, error) in
-            if let error = error{
-                print("User get/create error = \(error.localizedDescription)")
-                
-                self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
-                return
-            }
-            // we have got our logged in user
-        })
         
         noteVM = NoteViewModel(service: NoteService())
         
@@ -89,15 +87,6 @@ class MapViewController: UIViewController {
         
         self.noteVM?.removeGetNoteSubscription()
     }
-    
-    // method to present an alert
-    func showAlert(title: String, message: String, buttons: [String]){
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        buttons.forEach{
-            alert.addAction(UIAlertAction(title: $0, style: UIAlertAction.Style.default, handler: nil))
-        }
-        self.present(alert, animated: true)
-    }
 }
 
 extension MapViewController{
@@ -108,7 +97,7 @@ extension MapViewController{
             noteVM?.getNotes(forUser: nil, completion: {[unowned self] notes, error in
                 DispatchQueue.main.async {
                     if let error = error{
-                        self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                        LRAlertController.showAlert(vc: self, title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                     }else if let notes = notes{
                         self.setAnnotations(fromNotes: notes)
                     }
@@ -116,7 +105,7 @@ extension MapViewController{
             })
         }else{
             DispatchQueue.main.async {
-                self.showAlert(title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
+                LRAlertController.showAlert(vc: self, title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
             }
         }
     }
@@ -135,9 +124,11 @@ extension MapViewController{
             
             Firestore.firestore().collection("users").whereField("userName", isEqualTo: $0.userName).getDocuments { documentSnapshot, error in
                 if let error = error{
-                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                    LRAlertController.showAlert(vc: self, title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else if let data = documentSnapshot?.documents.first?.data(){
                     annotation.title = try? User(dictionary: data).userName
+                    
+                    self.noteCVC?.collectionView.reloadData()
                 }
             }
             self.annotations.append(annotation)
@@ -185,7 +176,7 @@ extension MapViewController{
         self.locationVM.startLocationManager{ location, error in
             DispatchQueue.main.async {
                 if let error = error{
-                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                    LRAlertController.showAlert(vc: self, title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else{
                     self.updateUserMarkerLocation()
                     // stop location manager as we need user location once
@@ -211,15 +202,9 @@ extension MapViewController: MKMapViewDelegate{
         if view.annotation is MKUserLocation{
             
             if !Reachability.shared.isConnectedToNetwork{
-                self.showAlert(title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
+                LRAlertController.showAlert(vc: self, title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
                 return
             }
-            
-            if self.userVM?.userName == ""{
-                self.showAlert(title: "Warning", message: "App could not retrieve the logged in user. Please check device internet connection and try again", buttons: ["Okay"])
-                return
-            }
-            
             
             let alert = UIAlertController(title: "Add Note", message: nil, preferredStyle: .alert)
             alert.view.accessibilityIdentifier = "AddNote"
@@ -231,15 +216,15 @@ extension MapViewController: MKMapViewDelegate{
                 if let text = alert.textFields?.first?.text{
                     let noteVM = NoteViewModel(service: NoteService())
                     noteVM.noteText = text
-                    noteVM.userName = self.userVM!.userName
+                    noteVM.userName = self.user.userName
                     noteVM.geo = GeoPoint(latitude: self.locationVM.currentLocation!.coordinate.latitude, longitude: self.locationVM.currentLocation!.coordinate.longitude)
                     self.noteText = text
                     noteVM.saveNote { note, error in
                         DispatchQueue.main.async {
                             if let error = error{
-                                self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                                LRAlertController.showAlert(vc: self, title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                             }else{
-                                self.showAlert(title: "Note Saved", message: "Your note was saved", buttons: ["Okay"])
+                                LRAlertController.showAlert(vc: self, title: "Note Saved", message: "Your note was saved", buttons: ["Okay"])
                                 DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
                                     self.noteText = nil
                                 }
@@ -272,7 +257,7 @@ extension MapViewController: MKMapViewDelegate{
         annotationView?.annotation = annotation
         
         // give logged in user's pin a different color
-        if annotation.title == self.userVM?.userName{
+        if annotation.title == self.user.userName{
             (annotationView as? MKPinAnnotationView)?.pinTintColor = .green
         }
         
@@ -320,7 +305,7 @@ extension MapViewController: UISearchBarDelegate{
             noteVM?.search(term: searchBar.text!, completion: { notes, error in
                 if let error = error{
                     print(error.localizedDescription)
-                    self.showAlert(title: "Error", message: error.localizedDescription, buttons: ["Okay"])
+                    LRAlertController.showAlert(vc: self, title: "Error", message: error.localizedDescription, buttons: ["Okay"])
                 }else if let notes = notes{
                     self.setAnnotations(fromNotes: notes)
                 }

@@ -13,12 +13,14 @@ struct User: Codable, Hashable{
     var firstName: String
     var lastName: String
     var userName: String
+    var password: String
     var documentID: String?
     
-    init(firstName: String, lastName: String, userName: String, documentID: String?){
+    init(firstName: String, lastName: String, userName: String, password: String,  documentID: String?){
         self.firstName = firstName
         self.lastName = lastName
         self.userName = userName
+        self.password = password
         self.documentID = documentID
     }
     
@@ -28,6 +30,7 @@ struct User: Codable, Hashable{
         self.firstName = try container.decodeIfPresent(String.self, forKey: .firstName) ?? ""
         self.lastName = try container.decodeIfPresent(String.self, forKey: .lastName) ?? ""
         self.userName = try container.decodeIfPresent(String.self, forKey: .userName) ?? ""
+        self.password = try container.decodeIfPresent(String.self, forKey: .password) ?? ""
         self.documentID = try container.decodeIfPresent(String.self, forKey: .documentID) ?? nil
     }
     
