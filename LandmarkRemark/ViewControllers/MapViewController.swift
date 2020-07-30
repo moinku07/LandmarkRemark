@@ -45,7 +45,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         noteCVC = self.children.first as? NoteCollectionViewController
-        //noteCVC?.delegate = self
+        noteCVC?.delegate = self
         
         self.view.accessibilityIdentifier = "MapViewController"
         
@@ -194,6 +194,12 @@ extension MapViewController{
             self.mapView.setRegion(region, animated: true)
             self.loadNotes()
         }
+    }
+}
+
+extension MapViewController: NoteCollectionViewControllerDelegate{
+    func didSelect(annotation: MKAnnotation, atIndex index: Int) {
+        self.mapView.selectAnnotation(annotation, animated: true)
     }
 }
 
