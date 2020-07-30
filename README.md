@@ -9,7 +9,7 @@ A login screen, which ensure note are being added by a user.
 
 To display the notes list, I could have used a tab bar to show a map in one tab and note list in another tab. 
 However, I used a collection view with horizontal scrolling at the bottom of the mapview for the note list.
-I did not write any unit tests for the ListViewController because I believe this is a nice to have feature for the technical test.
+I did not write any unit tests for the NoteCollectionViewController.
 
 It took me a while to learn and integrate Firebase Firestore. I was unable to do partial (contain/like) text match. 
 It only supports =, >, <, >=, <=. It also does not support OR. I could be wrong.
