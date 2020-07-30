@@ -17,7 +17,7 @@ It only supports =, >, <, >=, <=. It also does not support OR. I could be wrong.
 
 ## Setup:
 
-This project was created using Xcode 10.3 and tested on both simulators and real device. However, to install/test the app on a real device
+This project was created using Xcode 10.3 and tested on both simulators and real device. To install/test the app on a real device
 you will require a Provisioning profile, a different bundle identifier and firebase configuration. Whereas, you do not need to change any settings to test on a simulator.
 
 For simulators, set a simulated location from Simulator menu Features/Debug -> Location -> Custom location.
