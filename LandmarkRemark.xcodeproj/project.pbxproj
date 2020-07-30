@@ -398,7 +398,7 @@
 				33A2F4FC24CA67A6008209F2 /* Sources */,
 				33A2F4FD24CA67A6008209F2 /* Frameworks */,
 				33A2F4FE24CA67A6008209F2 /* Resources */,
-				D8A98C0FA9CE8944A654D148 /* [CP] Embed Pods Frameworks */,
+				EC714DA89E0F1B5FC27C15A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -436,7 +436,7 @@
 				33A2F51B24CA67A8008209F2 /* Sources */,
 				33A2F51C24CA67A8008209F2 /* Frameworks */,
 				33A2F51D24CA67A8008209F2 /* Resources */,
-				6522EF8F12E86A8983759E42 /* [CP] Embed Pods Frameworks */,
+				B3ACC7D5447C5E367796DD9E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -456,7 +456,7 @@
 				33A2F53124CA684F008209F2 /* Sources */,
 				33A2F53224CA684F008209F2 /* Frameworks */,
 				33A2F53324CA684F008209F2 /* Resources */,
-				9B60C8B51BE2067552278CDF /* [CP] Embed Pods Frameworks */,
+				1D04EFBBD896CB99F63DAEB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -558,21 +558,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6522EF8F12E86A8983759E42 /* [CP] Embed Pods Frameworks */ = {
+		1D04EFBBD896CB99F63DAEB1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		91CEC8EBA300D403652377AC /* [CP] Check Pods Manifest.lock */ = {
@@ -597,21 +597,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9B60C8B51BE2067552278CDF /* [CP] Embed Pods Frameworks */ = {
+		B3ACC7D5447C5E367796DD9E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests/Pods-LandmarkRemark-LandmarkRemarkAcceptanceTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LandmarkRemark-LandmarkRemarkUITests/Pods-LandmarkRemark-LandmarkRemarkUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D536624C14008D1FE591F6CE /* [CP] Check Pods Manifest.lock */ = {
@@ -636,7 +636,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D8A98C0FA9CE8944A654D148 /* [CP] Embed Pods Frameworks */ = {
+		EC714DA89E0F1B5FC27C15A0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
