@@ -5,7 +5,7 @@ Software design pattern: **MVVM**.
 
 ## Implicit requirements:
 
-A login screen, which ensure note are being added by an user.
+A login screen, which ensure note are being added by a user.
 
 To display the notes list, I could have used a tab bar to show a map in one tab and note list in another tab. 
 However, I used a collection view with horizontal scrolling at the bottom of the mapview for the note list.
