@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  LandmarkRemark
 //
-//  Created by St John Ambulance on 30/7/20.
+//  Created by Moin Uddin on 30/7/20.
 //  Copyright © 2020 Moin Uddin. All rights reserved.
 //
 
