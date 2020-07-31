@@ -128,12 +128,16 @@ extension MapViewController{
                 }else if let data = documentSnapshot?.documents.first?.data(){
                     annotation.title = try? User(dictionary: data).userName
                     
+                    // reload the collection view to load the username as it is downloaded asynchronously
+                    // I could have write more precise code here just to reload the affected cell
                     self.noteCVC?.collectionView.reloadData()
                 }
             }
+            
             self.annotations.append(annotation)
             self.mapView.addAnnotation(annotation)
             
+            // this will automatically select the newly added note
             if annotation.subtitle == self.noteText{
                 self.mapView.selectAnnotation(annotation, animated: true)
                 wasAnnotationSelected = true
@@ -142,6 +146,7 @@ extension MapViewController{
         
         self.mapView.showAnnotations(self.mapView.annotations, animated: true)
         
+        // If there was no new note, it will select the last annotation
         if !wasAnnotationSelected && self.annotations.count > 0{
             self.mapView.selectAnnotation(self.annotations.last!, animated: true)
         }
@@ -192,12 +197,16 @@ extension MapViewController{
             // zoom in to user/device location
             let region = MKCoordinateRegion(center: currentLocation, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
             self.mapView.setRegion(region, animated: true)
+            
+            // After the user/device location is determined, app will load exiting notes
+            // I chose not to load/download notes unless the user location is determined
             self.loadNotes()
         }
     }
 }
 
 extension MapViewController: NoteCollectionViewControllerDelegate{
+    // this delegate method will select the respective annotation
     func didSelect(annotation: MKAnnotation, atIndex index: Int) {
         self.mapView.selectAnnotation(annotation, animated: true)
     }
@@ -205,9 +214,9 @@ extension MapViewController: NoteCollectionViewControllerDelegate{
 
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if view.annotation is MKUserLocation{
+        if view.annotation is MKUserLocation{// handling the user location marker tap event to show the note add alert controller
             
-            if !Reachability.shared.isConnectedToNetwork{
+            if !Reachability.shared.isConnectedToNetwork{// device must have an internet connection to add a note
                 LRAlertController.showAlert(vc: self, title: "Warning", message: "Device is currently offline. Please check device internet connection.", buttons: ["Okay"])
                 return
             }
@@ -280,7 +289,7 @@ extension MapViewController: MKMapViewDelegate{
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        // this may not be necessary but I did not want to show the callout for device location annotation
+        // this may not be necessary but I did not want to show the callout for device/user location annotation
         views.forEach{
             if $0.annotation is MKUserLocation{
                 $0.canShowCallout = false
@@ -290,6 +299,7 @@ extension MapViewController: MKMapViewDelegate{
 }
 
 extension MapViewController: CLLocationManagerDelegate{
+    // handle the location manger authorisation status
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if [CLAuthorizationStatus.authorizedAlways, CLAuthorizationStatus.authorizedWhenInUse].contains(status){
             self.startLocationUpdates()
@@ -303,7 +313,7 @@ extension MapViewController: CLLocationManagerDelegate{
 }
 
 extension MapViewController: UISearchBarDelegate{
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {// load matching notes for the search term
         searchBar.resignFirstResponder()
         if let term = searchBar.text, term > ""{
             noteVM?.removeGetNoteSubscription()

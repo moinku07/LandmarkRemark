@@ -38,6 +38,24 @@ Press Command + U. It will start the Unit, UI and Acceptance tests.
 ### Login
 The login page serves both Login and Registration. If the username and password do not match, app will create a new user and log the user in. 
 
+## Search
+On the search bar type the search term and tap the "Search" button on the keyboard. It will display the search result.
+To clear the search result, clear the search bar text and tap "Search" button.
+I did not adopt the search bar clear delegate method.
+
+## Time needed to complete the test
+
+Below are rough times. I completed with partial Firebase integration with dummy data within 5-6 hours on Sunday (26/07/2020).
+Later, during the weekdays I learnt Firestore and completed the search note search functionality, optimised code, UI and Acceptance tests.
+
+Acceptance test - 1 hour
+UI tests - 2 hours
+Unit test - 2 hours
+Models, Services, ViewControllers - 3-4 hours
+Learning and integrating firebase firestore - 6-7 hours
+
+Total time taken around 15 hours.
+
 ## Feedback
 Please let me know your feedback. I want to know what I did wrong and what I could have done better. So, I can know improve in those areas.
 
